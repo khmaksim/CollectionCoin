@@ -32,5 +32,5 @@ def information_coin(request, id_coin):
     for metal in coin.metal.all():
         metal_list.append(metal.name)
     edge = Edge.objects.filter(coin__id=coin.id)
-    coin_form = CoinForm(instance=coin, initial={'edge': edge.first().name, 'metal': ','.join(metal_list)})
+    coin_form = CoinForm(instance=coin, initial={'edge': edge.first().name, 'metal': ','.join(metal_list)}, label_suffix='')
     return render_to_response('coin.html', {'coin': coin, 'coin_form': coin_form}, context_instance=RequestContext(request))

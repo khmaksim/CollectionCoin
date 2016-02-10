@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}{{ coin.name }}{% endblock %}
+    {% load staticfiles %}
+{% block css %}
+{#    <link rel="stylesheet" href="{% static 'css/_web.css' %}" media="screen" />#}
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen" />
+{% endblock %}
+{% block js %}
+	<script src="{% static 'js/mootools-1.2-core.js' %}"></script>
+	<script src="{% static 'js/_class.noobSlide.packed.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="coin_information">
+        <h2><a href="{% url 'main' %}">Разделы</a> | <a href="{% url 'coins_section' coin.section.id %}">{{ coin.section }}</a> | {{ coin.name }}</h2>
+        <div class="mask6">
+            <div id="box7">
+                <span><img src="img1.jpg" alt="Photo" /></span>
+                <span><img src="img2.jpg" alt="Photo" /></span>
+                <span><img src="img3.jpg" alt="Photo" /></span>
+                <span><img src="img4.jpg" alt="Photo" /></span>
+                <span><img src="img5.jpg" alt="Photo" /></span>
+                <span><img src="img6.jpg" alt="Photo" /></span>
+                <span><img src="img7.jpg" alt="Photo" /></span>
+                <span><img src="img8.jpg" alt="Photo" /></span>
+            </div>
+        </div>
+
+        <div id="thumbs7">
+            <div class="thumbs">
+                <div><img src="img1.jpg" alt="Photo Thumb" /></div>
+                <div><img src="img2.jpg" alt="Photo Thumb" /></div>
+                <div><img src="img3.jpg" alt="Photo Thumb" /></div>
+                <div><img src="img4.jpg" alt="Photo Thumb" /></div>
+                <div><img src="img5.jpg" alt="Photo Thumb" /></div>
+                <div><img src="img6.jpg" alt="Photo Thumb" /></div>
+                <div><img src="img7.jpg" alt="Photo Thumb" /></div>
+                <div><img src="img8.jpg" alt="Photo Thumb" /></div>
+            </div>
+
+            <div id="thumbs_mask7"></div>
+
+            <p id="thumbs_handles7">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </p>
+        </div>
+        <form>
+            {% for field in coin_form %}
+                {% if not field.value|length_is:"0" and field.value != None %}
+                    <p>{{ field.label_tag }}</p>{{ field }}
+                {%  endif %}
+            {% endfor %}
+        </form>
+    </div>
+{% endblock %}
+<script type="text/javascript">
+	window.addEvent('domready',function(){
+		//SAMPLE 7
+		var startItem = 3; //or   0   or any
+		var thumbs_mask7 = $('thumbs_mask7').setStyle('left',(startItem*60-568)+'px').set('opacity',0.8);
+		var fxOptions7 = {property:'left',duration:1000, transition:Fx.Transitions.Back.easeOut, wait:false}
+		var thumbsFx = new Fx.Tween(thumbs_mask7,fxOptions7);
+		var nS7 = new noobSlide({
+			box: $('box7'),
+			items: [0,1,2,3,4,5,6,7],
+			handles: $$('#thumbs_handles7 span'),
+			fxOptions: fxOptions7,
+			onWalk: function(currentItem){
+				thumbsFx.start(currentItem*60-568);
+			},
+			startItem: startItem
+		});
+		//walk to first with fx
+		nS7.walk(0);
+	});
+</script>

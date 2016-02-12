@@ -17,22 +17,18 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
-from django.contrib.auth.views import logout
 from coin import settings
 
-from coin.views import main, coins_section, information_coin
-from user_account.views import authentication, user_agreement, registration, profile
+from coin.views import main, coins_section, information_coin, add_to_collection
+import user_account.urls
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^/', include(user_account.urls)),
     url(r'^$', main, name='main'),
-    url(r'^account/login/$', authentication, name='login'),
-    url(r'^account/registration/$', registration, name='registration'),
-    url(r'^account/logout/$', logout, {'template_name': 'index.html'}, name='logout'),
-    url(r'^account/profile/$', profile, name='profile'),
-    url(r'^account/user_agreement/$', user_agreement, name='user_agreement'),
     url(r'^sections/(?P<id_section>[0-9]+)/$', coins_section, name='coins_section'),
     url(r'^sections/([0-9]+)/coins/(?P<id_coin>[0-9]+)/$', information_coin, name='information_coin'),
+    url(r'^sections/([0-9]+)/coins/(?P<id_coin>[0-9]+)/add/$', add_to_collection, name='add_to_collection'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

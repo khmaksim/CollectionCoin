@@ -113,7 +113,7 @@ ul#section {
     margin: 0 auto;
     border: none;
 }
-.add_button{
+.add_to_collection{
     display: block;
     text-decoration: none;
     user-select: none;
@@ -128,12 +128,12 @@ ul#section {
     cursor: pointer;
     font-size: 14px;
 }
-.add_button:hover{
+.add_to_collection:hover{
     background: #FFCB35;
     border: 1px solid #FFCB35;
     color: #fff;
 }
-.add_button:active{
+.add_to_collection:active{
     background: #FFE633;
     border: 1px solid #FFE633;
 }

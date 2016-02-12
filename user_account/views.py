@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from user_account.form import AuthenticationForm, RegistrationForm, ProfileChangingEmailForm, ProfileChangingPasswordForm
 
+
 def authentication(request):
     if request.method == 'POST':
         auth_form = AuthenticationForm(request.POST, auto_id='%s')

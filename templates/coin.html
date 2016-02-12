@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ coin.name }}{% endblock %}
+{% block title %}{{ coin.name }} | {{ coin.section }}{% endblock %}
     {% load staticfiles %}
 {% block css %}
     <link type="text/css"  rel="stylesheet" href="{% static 'css/smslider.css' %}" />

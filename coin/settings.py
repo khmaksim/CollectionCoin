@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,7 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_9aizk3=mw@1ji$zn!ip^+0ocq#@^dl@3@#ksixg7)eo2%9r6='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if socket.gethostname() == 'your.domain.com':
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = []
 

@@ -1,31 +1,38 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-<head lang="en">
-    <meta charset="utf-8">
-    <title>{% block title %}Коллекция{% endblock %}</title>
+{% extends "base.html" %}
+
+{% block title %}{{ coin.name }} | {{ coin.section }}{% endblock %}
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
-    {% block css %}{% endblock %}
-    <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
-    {% block js %}{% endblock %}
-</head>
-<body>
-    <header>
-        <nav>
+{% block css %}
+    <link type="text/css"  rel="stylesheet" href="{% static 'css/smslider.css' %}" />
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/jquery.smslider.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <h2 class="breadcrumbs"><a href="{% url 'main' %}">Разделы</a> | <a href="{% url 'coins_section' coin.section.id %}">{{ coin.section }}</a> | {{ coin.name }}</h2>
+    <div id="coin">
+        <div class="sm_slider">
             <ul>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Выход</a></li>
-                    <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Вход</a></li>
-                {% endif %}
-                <li><a href="{% url 'main' %}">Главная</a></li>
+                {% for image in coin.image_set.all %}
+                    <li><img src="{{ image.image.url }}" alt="Photo" /></li>
+                {% endfor %}
             </ul>
-        </nav>
-    </header>
-    <div id="content">
-        {% block content %}{% endblock %}
+        </div>
+        <div id="detail">
+            <form action="." method="post">
+                {% for field in add_to_collection_form %}
+                    <p>{{ field.label_tag }}</p>{{ field }}
+                {% endfor %}
+                <button class="save_button" type="submit">Сохранить</button>
+            </form>
+        </div>
     </div>
-{% block javascript %}{% endblock %}
-</body>
-</html>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.sm_slider').smSlider({pagination : false});
+        })
+    </script>
+{% endblock %}

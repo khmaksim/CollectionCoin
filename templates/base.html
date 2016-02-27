@@ -14,10 +14,11 @@
         <nav>
             <ul>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Выход</a></li>
-                    <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+                    <li><a href="{% url 'user_account:logout' %}">Выход</a></li>
+                    <li><a href="{% url 'user_account:profile' %}">Профиль</a></li>
+                    <li><a href="{% url 'user_account:profile' %}">Моя коллекция</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Вход</a></li>
+                    <li><a href="{% url 'user_account:login' %}">Вход</a></li>
                 {% endif %}
                 <li><a href="{% url 'main' %}">Главная</a></li>
             </ul>
@@ -27,5 +28,8 @@
         {% block content %}{% endblock %}
     </div>
 {% block javascript %}{% endblock %}
+    <footer>
+
+    </footer>
 </body>
 </html>

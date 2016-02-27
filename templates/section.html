@@ -3,7 +3,7 @@
 {% block title %}{{ section.name }}{% endblock %}
 
 {% block content %}
-    <h2><a href="{% url 'main' %}">Разделы</a> | {{ section.name }}</h2>
+    <h2 class="breadcrumbs"><a href="{% url 'main' %}">Разделы</a> | {{ section.name }}</h2>
     {% for coin in coins %}
         <div class="coin">
             <div class="header_coin"><a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a></div>

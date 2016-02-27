@@ -5,11 +5,11 @@
 {% block content %}
     {% if user.is_authenticated %}
         {% if section_list %}
-            <ul id="section">
+            <ol class="rounded">
             {%  for section in section_list %}
-                <li class="section"><a href="{% url 'coins_section' section.id %}"><h3>{{ section.name }}</h3></a></li>
+                <li><a href="{% url 'coins_section' section.id %}"><h3>{{ section.name }}</h3></a></li>
             {% endfor %}
-            </ul>
+            </ol>
         {% endif %}
     {% endif %}
 {% endblock %}

@@ -37,7 +37,7 @@
                 </form>
             </div>
             <div id="register" class="animate form">
-                <form  action="{% url 'registration' %}" autocomplete="on" method="post">
+                <form  action="{% url 'user_account:registration' %}" autocomplete="on" method="post">
                     {% csrf_token %}
                     <h1>Регистрация</h1>
                     <p>
@@ -49,7 +49,7 @@
                         {{ reg_form.password_signup }}
                     </p>
                     <p id="user_agreement">
-                        Нажимая кнопку &laquoЗарегистрироваться&raquo, Вы принимаете условия <a href="{% url 'user_agreement' %}">Пользовательского соглашения</a>.
+                        Нажимая кнопку &laquoЗарегистрироваться&raquo, Вы принимаете условия <a href="{% url 'user_account:user_agreement' %}">Пользовательского соглашения</a>.
                     </p>
                     <p class="signin button">
                         <input type="submit" value="Зарегистрироваться"/>

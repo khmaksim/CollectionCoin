@@ -1,6 +1,6 @@
 __author__ = 'kolobok'
 
-from django.conf.urls import url
+from django.conf.urls import url, patterns
 from django.contrib.auth.views import logout
 
 from user_account.views import authentication, user_agreement, registration, profile

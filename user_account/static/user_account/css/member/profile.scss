@@ -1,0 +1,20 @@
+#profile {
+    margin: 0 auto;
+    width: 500px;
+}
+#profile h3 {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+#profile p {
+	margin-bottom: 15px;
+}
+#profile p:first-child{
+	margin: 0px;
+}
+#profile input:not([type="checkbox"]){
+	width: 98%;
+	margin-top: 4px;
+	padding: 10px 5px 10px 5px;
+}

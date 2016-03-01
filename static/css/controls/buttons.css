@@ -1,0 +1,32 @@
+.save_button {
+  margin-top: 15px;
+  background: #67b3ff;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 20px;
+  border: 0px solid;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px; }
+
+.save_button:hover {
+  background: #61A8F0; }
+
+.add_to_collection {
+  display: block;
+  text-decoration: none;
+  user-select: none;
+  margin: 15px 10px;
+  text-align: center;
+  background: #f7ae32;
+  color: #fff;
+  padding: 4px 0px;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px; }
+
+.add_to_collection:hover {
+  background: #FFB434; }
+
+/*# sourceMappingURL=buttons.css.map */

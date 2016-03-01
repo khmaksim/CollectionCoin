@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>{% block title %}Коллекция{% endblock %}</title>
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
     {% block css %}{% endblock %}
     <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
     {% block js %}{% endblock %}
@@ -29,7 +29,50 @@
     </div>
 {% block javascript %}{% endblock %}
     <footer>
-
+        <ul id="footer_nav">
+            <li>
+                <a href="#">Раздел</a>
+                <ul>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Раздел</a>
+                 <ul>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Раздел</a>
+                 <ul>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                     <li><a href="#">Подраздел</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Раздел</a>
+                 <ul>
+                    <li><a href="#">Подраздел</a></li>
+                    <li><a href="#">Подраздел</a></li>
+                    <li><a href="#">Подраздел</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Раздел</a>
+                <ul>
+                    <li><a href="#">Подраздел</a></li>
+                    <li><a href="#">Подраздел</a></li>
+                    <li><a href="#">Подраздел</a></li>
+                    <li><a href="#">Подраздел</a></li>
+                </ul>
+            </li>
+        </ul>
+        &copy;&nbsp;2016
     </footer>
 </body>
 </html>

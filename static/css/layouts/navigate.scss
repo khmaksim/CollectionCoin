@@ -1,0 +1,21 @@
+@import '../global-vars/locals';
+
+nav {
+}
+nav ul {
+    margin: 0 50px;
+}
+nav li {
+    float: right;
+    display: block;
+    margin: 15px 25px;
+    padding: 10px 0;
+}
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+}
+nav a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,158 @@
+@import '../global-vars/locals';
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, fieldset, input, textarea, p, blockquote {
+    margin: 0;
+    padding:0;
+}
+html {
+    height: 100%;
+}
+body {
+  min-width: 960px;
+  margin: 0 auto;
+  font-family: "Trebuchet MS";
+  height: 100%;
+}
+
+/*-----------------------------------*\
+                #BASE
+\*-----------------------------------*/
+/* Headings */
+h2{
+    margin: 10px 0px 10px 5px;
+    font-size: 16px;
+    font-weight: normal;
+}
+h2 a{
+    text-decoration: none;
+    color: #4C4C46;
+}
+h2 a:hover{
+    text-decoration: underline;
+}
+ul {
+  list-style: none;
+}
+/*-----------------------------------*\
+                #OBJECTS
+\*-----------------------------------*/
+#content {
+  margin: 0 auto;
+  width: 960px;
+  padding-bottom: 50px;
+  min-height: 100%;
+}
+
+/*-----------------------------------*\
+                #COMPONENTS
+\*-----------------------------------*/
+/* Page-head */
+#section a:hover {
+    text-decoration: underline;
+}
+.coin {
+    width: 180px;
+    height: 250px;
+    border: solid 1px #ABAA9D;
+    float: left;
+    margin: 5px 5px 5px 5px;
+    border-radius: 5px;
+}
+.image_coin{
+    width: 150px;
+    height: 150px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+}
+.image_coin img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: none;
+}
+.header_coin{
+    margin: 10px auto;
+    text-align: center;
+}
+.header_coin a{
+    text-decoration: none;
+    color: $text-color;
+    font-size: large;
+}
+
+div#detail{
+    float: left;
+    width: 50%;
+    margin: 25px 0 0 20px;
+}
+div#detail p{
+    color: $text-color;
+}
+div#detail input,
+div#detail select,
+div#detail textarea{
+	width: 100%;
+	margin: 4px 0 5px 0;
+	padding: 7px 5px 7px 5px;
+	border: 1px solid rgb(178, 178, 178);
+    box-sizing : content-box;
+    border-radius: 3px;
+}
+
+
+
+/*div#detail select{*/
+    /*width: 52%;*/
+	/*margin-top: 4px;*/
+	/*padding: 10px 5px 10px 5px;*/
+	/*border: 1px solid rgb(178, 178, 178);*/
+	/*box-sizing : content-box;*/
+	/*border-radius: 3px;*/
+	/*box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;*/
+	/*transition: all 0.2s linear;*/
+/*}*/
+
+.rounded {
+  counter-reset: li;
+  list-style: none;
+  font-size: 16px;
+  padding: 0;
+}
+.rounded a {
+  position: relative;
+  display: block;
+  padding: 10px 10px 10px 30px;
+  margin: .5em 0;
+  background: #fff;
+  border: solid 1px #ABAA9D;
+  color: $text-color;
+  text-decoration: none;
+  border-radius: 3px;
+}
+.rounded a:hover {
+  background: #ABAA9D;
+}
+.rounded a:hover:before {
+  transform: rotate(180deg);
+}
+.rounded a:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -1.3em;
+  top: 50%;
+  margin-top: -1.3em;
+  background: #d9a958;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  border: .3em solid white;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 2em;
+  transition: all .3s ease-out;
+}

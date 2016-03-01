@@ -1,0 +1,16 @@
+@import "../global-vars/locals";
+
+input:not([type="checkbox"]){
+  	border: 1px solid $border-color;
+    box-sizing : content-box;
+    border-radius: 3px;
+}
+input:not([type="checkbox"]):active,
+input:not([type="checkbox"]):focus{
+	border: 1px solid rgba(91, 90, 90, 0.7);
+	background: rgba(238, 236, 240, 0.2);
+}
+label{
+	color: $text-color;
+	position: relative;
+}

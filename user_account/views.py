@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from user_account.form import AuthenticationForm, RegistrationForm, ProfileChangingEmailForm, ProfileChangingPasswordForm
+from django.contrib.auth.models import User
 
 
 def authentication(request):
@@ -45,17 +46,34 @@ def user_agreement(request):
 
 
 def profile(request):
+    user = request.user
+
     if request.method == 'POST':
-        changing_email_form = ProfileChangingEmailForm(request.POST)#, auto_id='%s')
-        changing_password_form = ProfileChangingPasswordForm(request.POST, auto_id='%s')
+        changing_email_form = ProfileChangingEmailForm(request.POST, initial={'email': user.email})
+        if changing_email_form.has_changed():
+            if changing_email_form.is_bound and changing_email_form.is_valid():
+                user.email = changing_email_form.cleaned_data['email']
+                user.save()
+                changing_email_form.saved = True
+
+        changing_password_form = ProfileChangingPasswordForm(request.POST,
+                                                             initial={'password_old': user.password,
+                                                                      'password_new': ''})
+        if changing_password_form.has_changed():
+            if changing_password_form.is_bound and changing_password_form.is_valid():
+                password_new = changing_password_form.cleaned_data['password_new']
+                password_old = changing_password_form.cleaned_data['password_old']
+                if password_new != password_old and user.check_password(password_old):
+                    user.set_password(password_new)
+                    user.save()
+                    changing_password_form.saved = True
+
     else:
-        changing_password_form = ProfileChangingPasswordForm(auto_id='%s')
-        changing_email_form = ProfileChangingEmailForm(auto_id='%s')
+        changing_email_form = ProfileChangingEmailForm({'email': user.email})
+        changing_password_form = ProfileChangingPasswordForm()
 
-    return render(request, 'profile.html', {'changing_password_form': changing_password_form, 'changing_email_form': changing_email_form})
-
-
-from django.contrib.auth.models import User
+    return render(request, 'profile.html', {'changing_password_form': changing_password_form,
+                                            'changing_email_form': changing_email_form})
 
 
 def create_user(email, password):

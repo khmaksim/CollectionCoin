@@ -12,7 +12,7 @@
 <body>
     <header>
         <nav>
-            <ul>
+            <ul id="header_menu">
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user_account:logout' %}">Выход</a></li>
                     <li><a href="{% url 'user_account:profile' %}">Профиль</a></li>
@@ -25,6 +25,7 @@
         </nav>
     </header>
     <div id="content">
+        <div id="breadcrumbs"><h2>{% block breadcrumbs %}{% endblock %}</h2></div>
         {% block content %}{% endblock %}
     </div>
 {% block javascript %}{% endblock %}

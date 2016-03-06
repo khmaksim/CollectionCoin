@@ -14,19 +14,6 @@ body {
 /*-----------------------------------*\
                 #BASE
 \*-----------------------------------*/
-/* Headings */
-h2 {
-  margin: 10px 0px 10px 5px;
-  font-size: 16px;
-  font-weight: normal; }
-
-h2 a {
-  text-decoration: none;
-  color: #4C4C46; }
-
-h2 a:hover {
-  text-decoration: underline; }
-
 ul {
   list-style: none; }
 
@@ -147,21 +134,35 @@ div#detail textarea {
   border-radius: 2em;
   transition: all .3s ease-out; }
 
-nav ul {
+#header_menu {
   margin: 0 50px; }
 
-nav li {
+#header_menu li {
   float: right;
   display: block;
   margin: 15px 25px;
   padding: 10px 0; }
 
-nav a {
+#header_menu a {
   text-decoration: none;
   color: #ffffff;
   font-size: 18px; }
 
-nav a:hover {
+#header_menu a:hover {
+  text-decoration: underline; }
+
+#breadcrumbs {
+  margin: 10px 0px 10px 5px; }
+
+#breadcrumbs h2 {
+  font-size: 16px;
+  font-weight: normal; }
+
+#breadcrumbs a {
+  text-decoration: none;
+  color: #4C4C46; }
+
+#breadcrumbs a:hover {
   text-decoration: underline; }
 
 header {
@@ -284,9 +285,8 @@ label {
   width: 500px; }
 
 #profile h3 {
-  font-size: 30px;
   text-align: center;
-  padding-bottom: 30px; }
+  padding-bottom: 10px; }
 
 #profile p {
   margin-bottom: 15px; }

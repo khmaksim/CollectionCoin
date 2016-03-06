@@ -2,11 +2,13 @@
 
 {% block title %}Профиль{% endblock %}
 
+{% block breadcrumbs %}Профиль{% endblock %}
 {% block content %}
     <div id="profile">
         <section>
-            <form action="../../templates" method="post">
-                <h3>Профиль</h3>
+            <form action="." method="post">{% csrf_token %}
+                <h3>Сменить email</h3>
+                <p>{% if changing_email_form.saved %}Сохранено{% endif %}</p>
                 <p>
                     <label for="{{ changing_email_form.email.name }}">{{ changing_email_form.email.label }}</label>
                     {{ changing_email_form.email }}
@@ -17,8 +19,9 @@
             </form>
         </section>
         <section>
-            <form action="../../templates" method="post">
+            <form action="." method="post">{% csrf_token %}
                 <h3>Сменить пароль</h3>
+                <p>{% if changing_password_form.saved %}Сохранено{% endif %}</p>
                 <p>
                     <label for="{{ changing_password_form.password_old.name }}">{{ changing_password_form.password_old.label }}</label>
                     {{ changing_password_form.password_old }}
@@ -27,10 +30,10 @@
                     <label for="{{ changing_password_form.password_new.name }}">{{ changing_password_form.password_new.label }}</label>
                     {{ changing_password_form.password_new }}
                 </p>
-                <p>
-                    <label for="{{ changing_password_form.password_new_repeat.name }}">{{ changing_password_form.password_new_repeat.label }}</label>
-                    {{ changing_password_form.password_new_repeat }}
-                </p>
+{#                <p>#}
+{#                    <label for="{{ changing_password_form.password_new_repeat.name }}">{{ changing_password_form.password_new_repeat.label }}</label>#}
+{#                    {{ changing_password_form.password_new_repeat }}#}
+{#                </p>#}
                 <p class="login button">
                     <input type="submit" value="Сохранить" />
                 </p>

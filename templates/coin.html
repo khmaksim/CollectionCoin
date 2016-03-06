@@ -9,8 +9,12 @@
     <script type="text/javascript" src="{% static 'js/jquery.smslider.min.js' %}"></script>
 {% endblock %}
 
+{% block breadcrumbs %}
+    <a href="{% url 'main' %}">Каталог</a> |
+    <a href="{% url 'coins_section' coin.section.id %}">{{ coin.section }}</a> |
+    {{ coin.name }}
+{% endblock %}
 {% block content %}
-    <h2 class="breadcrumbs"><a href="{% url 'main' %}">Разделы</a> | <a href="{% url 'coins_section' coin.section.id %}">{{ coin.section }}</a> | {{ coin.name }}</h2>
     <div id="coin">
         <div class="sm_slider">
             <ul>

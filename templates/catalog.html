@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}Главная{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ breadcrumbs }}
+{% endblock %}
 
 {% block content %}
     {% if user.is_authenticated %}
         {% if section_list %}
-            <ol class="rounded">
+            <ul class="rounded">
             {%  for section in section_list %}
                 <li><a href="{% url 'coins_section' section.id %}"><h3>{{ section.name }}</h3></a></li>
             {% endfor %}
-            </ol>
+            </ul>
         {% endif %}
     {% endif %}
 {% endblock %}

@@ -69,7 +69,7 @@ ul {
 div#detail {
   float: left;
   width: 50%;
-  margin: 25px 0 0 20px; }
+  margin: 0 0 0 20px; }
 
 div#detail p {
   color: #4c4c46; }
@@ -103,7 +103,7 @@ div#detail textarea {
 .rounded a {
   position: relative;
   display: block;
-  padding: 10px 10px 10px 30px;
+  padding: 10px 10px 10px 10px;
   margin: .5em 0;
   background: #fff;
   border: solid 1px #ABAA9D;
@@ -112,27 +112,7 @@ div#detail textarea {
   border-radius: 3px; }
 
 .rounded a:hover {
-  background: #ABAA9D; }
-
-.rounded a:hover:before {
-  transform: rotate(180deg); }
-
-.rounded a:before {
-  content: counter(li);
-  counter-increment: li;
-  position: absolute;
-  left: -1.3em;
-  top: 50%;
-  margin-top: -1.3em;
-  background: #d9a958;
-  height: 2em;
-  width: 2em;
-  line-height: 2em;
-  border: .3em solid white;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 2em;
-  transition: all .3s ease-out; }
+  background: #cfcec1; }
 
 #header_menu {
   margin: 0 50px; }

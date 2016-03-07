@@ -9,15 +9,21 @@ from collection.form import CoinForm, AddToCollectionForm
 
 def main(request):
     if not request.user.is_authenticated():
-        return render(request, 'index.html')
+        return render(request, 'catalog.html')
     else:
+        title = breadcrumbs = u'Каталог'
         section_list = Section.objects.all()
-        return render(request, 'index.html', {'section_list': section_list})
-    return render(request, 'index.html')
+        return render(request, 'catalog.html', {'title': title, 'breadcrumbs': breadcrumbs, 'section_list': section_list})
+    # return render(request, 'catalog.html')
 
 
-def sections(request):
-    return render(request, 'index.html')
+def catalog(request):
+    if not request.user.is_authenticated():
+        return render(request, 'catalog.html')
+    else:
+        title = breadcrumbs = u'Каталог'
+        section_list = Section.objects.all()
+        return render(request, 'catalog.html', {'title': title, 'breadcrumbs': breadcrumbs, 'section_list': section_list})
 
 
 def coins_section(request, id_section):
@@ -56,5 +62,13 @@ def add_to_collection(request, id_coin):
     else:
         add_to_collection_form = AddToCollectionForm(label_suffix='')
 
-    return render_to_response('add_to_collection.html', {'coin': coin, 'add_to_collection_form': add_to_collection_form},
+    return render_to_response('add_to_collection.html',
+                              {'coin': coin, 'add_to_collection_form': add_to_collection_form},
+                              context_instance=RequestContext(request))
+
+
+def my_collection(request):
+    title = breadcrumbs = u'Моя Коллекция'
+
+    return render_to_response('catalog.html', {'title': title, 'breadcrumbs': breadcrumbs},
                               context_instance=RequestContext(request))

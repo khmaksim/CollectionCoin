@@ -19,15 +19,16 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from collection import settings
 
-from collection.views import main, coins_section, information_coin, add_to_collection
+from collection.views import main, coins_section, information_coin, add_to_collection, my_collection, catalog
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('user_account.urls', namespace='user_account', app_name='user_account')),
-    url(r'^$', main, name='main'),
-    url(r'^sections/(?P<id_section>[0-9]+)/$', coins_section, name='coins_section'),
-    url(r'^sections/([0-9]+)/coins/(?P<id_coin>[0-9]+)/$', information_coin, name='information_coin'),
-    url(r'^sections/([0-9]+)/coins/(?P<id_coin>[0-9]+)/add/$', add_to_collection, name='add_to_collection'),
+    url(r'^catalog/$', catalog, name='catalog'),
+    url(r'^my-collection/$', my_collection, name='my_collection'),
+    url(r'^catalog/(?P<id_section>[0-9]+)/$', coins_section, name='coins_section'),
+    url(r'^catalog/([0-9]+)/(?P<id_coin>[0-9]+)/$', information_coin, name='information_coin'),
+    url(r'^catalog/([0-9]+)/(?P<id_coin>[0-9]+)/add/$', add_to_collection, name='add_to_collection'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

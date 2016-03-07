@@ -16,11 +16,11 @@
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user_account:logout' %}">Выход</a></li>
                     <li><a href="{% url 'user_account:profile' %}">Профиль</a></li>
-                    <li><a href="{% url 'user_account:profile' %}">Моя коллекция</a></li>
+                    <li><a href="{% url 'my_collection' %}">Моя коллекция</a></li>
                 {% else %}
                     <li><a href="{% url 'user_account:login' %}">Вход</a></li>
                 {% endif %}
-                <li><a href="{% url 'main' %}">Главная</a></li>
+                <li><a href="{% url 'catalog' %}">Каталог</a></li>
             </ul>
         </nav>
     </header>

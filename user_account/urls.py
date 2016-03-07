@@ -8,7 +8,7 @@ from user_account.views import authentication, user_agreement, registration, pro
 urlpatterns = [
     url(r'^account/login/$', authentication, name='login'),
     url(r'^account/registration/$', registration, name='registration'),
-    url(r'^account/logout/$', logout, {'template_name': 'index.html'}, name='logout'),
+    url(r'^account/logout/$', logout, {'template_name': 'catalog.html'}, name='logout'),
     url(r'^account/profile/$', profile, name='profile'),
     url(r'^account/user_agreement/$', user_agreement, name='user_agreement'),
 ]

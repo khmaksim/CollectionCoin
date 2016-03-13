@@ -16,7 +16,7 @@
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user_account:logout' %}">Выход</a></li>
                     <li><a href="{% url 'user_account:profile' %}">Профиль</a></li>
-                    <li><a href="{% url 'my_collection' %}">Моя коллекция</a></li>
+                    <li><a href="{% url 'collection' %}">Моя коллекция</a></li>
                 {% else %}
                     <li><a href="{% url 'user_account:login' %}">Вход</a></li>
                 {% endif %}

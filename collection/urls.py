@@ -19,14 +19,16 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from collection import settings
 
-from collection.views import main, coins_section, information_coin, add_to_collection, my_collection, catalog
+from collection.views import main, section_catalog, section_collection, \
+    information_coin, add_to_collection, my_collection, catalog
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('user_account.urls', namespace='user_account', app_name='user_account')),
+    url(r'^collection/$', my_collection, name='collection'),
+    url(r'^collection/(?P<id_section>[0-9]+)/$', section_collection, name='section_collection'),
     url(r'^catalog/$', catalog, name='catalog'),
-    url(r'^my-collection/$', my_collection, name='my_collection'),
-    url(r'^catalog/(?P<id_section>[0-9]+)/$', coins_section, name='coins_section'),
+    url(r'^catalog/(?P<id_section>[0-9]+)/$', section_catalog, name='section_catalog'),
     url(r'^catalog/([0-9]+)/(?P<id_coin>[0-9]+)/$', information_coin, name='information_coin'),
     url(r'^catalog/([0-9]+)/(?P<id_coin>[0-9]+)/add/$', add_to_collection, name='add_to_collection'),
 ]

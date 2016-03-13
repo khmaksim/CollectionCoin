@@ -1,9 +1,9 @@
 __author__ = 'kolobok'
 
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
-from collection.models import Section, Coin, Metal, Edge
+from collection.models import Section, Coin, Metal, Edge, Collection
 from collection.form import CoinForm, AddToCollectionForm
 
 
@@ -23,10 +23,11 @@ def catalog(request):
     else:
         title = breadcrumbs = u'Каталог'
         section_list = Section.objects.all()
-        return render(request, 'catalog.html', {'title': title, 'breadcrumbs': breadcrumbs, 'section_list': section_list})
+        return render(request, 'catalog.html',
+                      {'title': title, 'breadcrumbs': breadcrumbs, 'section_list': section_list})
 
 
-def coins_section(request, id_section):
+def section_catalog(request, id_section):
     coins = Coin.objects.filter(section=id_section)
     section = Section.objects.get(pk=id_section)
     return render_to_response('section.html', {'section': section, 'coins': coins},
@@ -59,16 +60,32 @@ def add_to_collection(request, id_coin):
 
     if request.method == 'POST':
         add_to_collection_form = AddToCollectionForm(request.POST, label_suffix='')
+        if add_to_collection_form.is_bound and add_to_collection_form.is_valid():
+            collection = add_to_collection_form.save(commit=False)
+            collection.coin = coin
+            collection.save()
+            return redirect('coins_section', id_section=coin.section_id)
     else:
         add_to_collection_form = AddToCollectionForm(label_suffix='')
 
-    return render_to_response('add_to_collection.html',
-                              {'coin': coin, 'add_to_collection_form': add_to_collection_form},
-                              context_instance=RequestContext(request))
+    return render(request, 'add_to_collection.html',
+                              {'coin': coin, 'add_to_collection_form': add_to_collection_form})
 
 
 def my_collection(request):
     title = breadcrumbs = u'Моя Коллекция'
+    section_list = []
 
-    return render_to_response('catalog.html', {'title': title, 'breadcrumbs': breadcrumbs},
+    section_list = Section.objects.filter(coin__collection__isnull=False).distinct()
+
+    # for collection in Collection.objects.all():
+    #     section_list.append(collection.coin.section)
+
+    return render(request, 'collection.html', {'title': title, 'breadcrumbs': breadcrumbs, 'section_list': section_list})
+
+
+def section_collection(request, id_section):
+    coins = Coin.objects.filter(section=id_section)
+    section = Section.objects.get(pk=id_section)
+    return render_to_response('section.html', {'section': section, 'coins': coins},
                               context_instance=RequestContext(request))

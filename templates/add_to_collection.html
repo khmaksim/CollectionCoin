@@ -11,7 +11,7 @@
 
 {% block breadcrumbs %}
     <a href="{% url 'catalog' %}">Каталог</a> |
-    <a href="{% url 'coins_section' coin.section.id %}">{{ coin.section }}</a> |
+    <a href="{% url 'section_catalog' coin.section.id %}">{{ coin.section }}</a> |
     {{ coin.name }}
 {% endblock %}
 
@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div id="detail">
-            <form action="." method="post">
+            <form action="." method="post">{% csrf_token %}
                 {% for field in add_to_collection_form %}
                     <p>{{ field.label_tag }}</p>{{ field }}
                 {% endfor %}

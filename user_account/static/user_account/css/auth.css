@@ -29,6 +29,23 @@
 .add_to_collection:hover {
   background: #FFB434; }
 
+.remove_from_collection {
+  display: block;
+  text-decoration: none;
+  user-select: none;
+  margin: 15px 10px;
+  text-align: center;
+  background: #f7ae32;
+  color: #fff;
+  padding: 4px 0px;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px; }
+
+.remove_from_collection:hover {
+  background: #FFB434; }
+
 #profile p.button input,
 #wrapper p.button input {
   width: 100%;
@@ -90,7 +107,7 @@ a.hiddenanchor {
 #wrapper h1 {
   font-size: 38px;
   color: #3674b2;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
   padding-bottom: 30px; }
 

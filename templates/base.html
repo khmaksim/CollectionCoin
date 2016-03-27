@@ -25,7 +25,9 @@
         </nav>
     </header>
     <div id="content">
-        <div id="breadcrumbs"><h2>{% block breadcrumbs %}{% endblock %}</h2></div>
+        <ul id="breadcrumbs">
+            {% block breadcrumbs %}{% endblock %}
+        </ul>
         {% block content %}{% endblock %}
     </div>
 {% block javascript %}{% endblock %}

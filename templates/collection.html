@@ -1,5 +1,9 @@
 {% extends "section_list.html" %}
 
+{% block breadcrumbs %}
+    <li>Моя коллекция</li>
+{% endblock %}
+
 {% block section %}
     {%  for section in section_list %}
         <li><a href="{% url 'section_collection' section.id %}"><h3>{{ section.name }}</h3></a></li>

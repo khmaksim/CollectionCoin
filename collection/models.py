@@ -1,6 +1,7 @@
 __author__ = 'kolobok'
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Coin(models.Model):
@@ -90,9 +91,10 @@ class SheldonGrade(Grade):
 
 
 class Collection(models.Model):
-    coin = models.ForeignKey('Coin', verbose_name='Монета', db_column='id_coin')
-    international_grade = models.ForeignKey('InternationalGrade', verbose_name='Международная оценка', null=True,
+    coin = models.ForeignKey('Coin', verbose_name=u'Монета', db_column='id_coin')
+    international_grade = models.ForeignKey('InternationalGrade', verbose_name=u'Международная оценка', null=True,
                                             blank=True, db_column='id_international_grade')
-    sheldon_grade = models.ForeignKey('SheldonGrade', verbose_name='Шелдона оценка', null=True, blank=True,
+    sheldon_grade = models.ForeignKey('SheldonGrade', verbose_name=u'Шелдона оценка', null=True, blank=True,
                                       db_column='id_sheldon_grade')
+    user = models.ForeignKey(User, verbose_name=u'Пользователь', db_column='id_user')
     note = models.TextField(u'Заметки', null=True, blank=True)

@@ -2,10 +2,6 @@
 
 {% block title %}{{ title }}{% endblock %}
 
-{% block breadcrumbs %}
-    {{ breadcrumbs }}
-{% endblock %}
-
 {% block content %}
     {% if user.is_authenticated %}
         {% if section_list %}

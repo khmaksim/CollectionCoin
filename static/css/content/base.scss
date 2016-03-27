@@ -79,30 +79,6 @@ div#detail{
 div#detail p{
     color: $text-color;
 }
-div#detail input,
-div#detail select,
-div#detail textarea{
-	width: 100%;
-	margin: 4px 0 5px 0;
-	padding: 7px 5px 7px 5px;
-	border: 1px solid rgb(178, 178, 178);
-    box-sizing : content-box;
-    border-radius: 3px;
-}
-
-
-
-/*div#detail select{*/
-    /*width: 52%;*/
-	/*margin-top: 4px;*/
-	/*padding: 10px 5px 10px 5px;*/
-	/*border: 1px solid rgb(178, 178, 178);*/
-	/*box-sizing : content-box;*/
-	/*border-radius: 3px;*/
-	/*box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;*/
-	/*transition: all 0.2s linear;*/
-/*}*/
-
 .rounded {
   counter-reset: li;
   list-style: none;

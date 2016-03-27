@@ -22,4 +22,10 @@ class CoinForm(ModelForm):
 class AddToCollectionForm(ModelForm):
     class Meta:
         model = Collection
-        exclude = ['coin']
+        exclude = ['coin', 'user']
+
+
+class CollectionForm(ModelForm):
+    class Meta:
+        model = Collection
+        exclude = ['coin', 'user']

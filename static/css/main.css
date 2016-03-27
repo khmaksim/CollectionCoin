@@ -74,26 +74,6 @@ div#detail {
 div#detail p {
   color: #4c4c46; }
 
-div#detail input,
-div#detail select,
-div#detail textarea {
-  width: 100%;
-  margin: 4px 0 5px 0;
-  padding: 7px 5px 7px 5px;
-  border: 1px solid #b2b2b2;
-  box-sizing: content-box;
-  border-radius: 3px; }
-
-/*div#detail select{*/
-/*width: 52%;*/
-/*margin-top: 4px;*/
-/*padding: 10px 5px 10px 5px;*/
-/*border: 1px solid rgb(178, 178, 178);*/
-/*box-sizing : content-box;*/
-/*border-radius: 3px;*/
-/*box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;*/
-/*transition: all 0.2s linear;*/
-/*}*/
 .rounded {
   counter-reset: li;
   list-style: none;
@@ -134,9 +114,8 @@ div#detail textarea {
 #breadcrumbs {
   margin: 10px 0px 10px 5px; }
 
-#breadcrumbs h2 {
-  font-size: 16px;
-  font-weight: normal; }
+#breadcrumbs li {
+  display: inline; }
 
 #breadcrumbs a {
   text-decoration: none;
@@ -219,6 +198,23 @@ footer {
 .add_to_collection:hover {
   background: #FFB434; }
 
+.remove_from_collection {
+  display: block;
+  text-decoration: none;
+  user-select: none;
+  margin: 15px 10px;
+  text-align: center;
+  background: #f7ae32;
+  color: #fff;
+  padding: 4px 0px;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px; }
+
+.remove_from_collection:hover {
+  background: #FFB434; }
+
 #profile p.button input,
 #wrapper p.button input {
   width: 100%;
@@ -259,6 +255,20 @@ input:not([type="checkbox"]):focus {
 label {
   color: #4c4c46;
   position: relative; }
+
+#detail input,
+#detail select,
+#detail textarea {
+  width: 100%;
+  margin: 4px 0 5px 0;
+  padding: 7px 5px 7px 5px;
+  border: 1px solid #b2b2b2;
+  border-radius: 3px;
+  font-family: "Trebuchet MS";
+  font-size: 14px; }
+
+#detail select {
+  width: 103%; }
 
 #profile {
   margin: 0 auto;

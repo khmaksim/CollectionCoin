@@ -13,7 +13,7 @@ class Coin(models.Model):
     diameter = models.DecimalField(u'Диаметр монеты', max_digits=4, decimal_places=2, null=True, blank=True)
     thickness = models.DecimalField(u'Толщина монеты', max_digits=3, decimal_places=2, null=True, blank=True)
     metal = models.ManyToManyField('Metal', verbose_name=u'Металл', db_column='id_metal')
-    edge = models.ForeignKey('Edge', verbose_name=u'Вид гурта', null=True, blank=True, db_column='id_edge')
+    type_edge = models.ForeignKey('TypeEdge', verbose_name=u'Вид гурта', null=True, blank=True, db_column='id_edge')
     section = models.ForeignKey('Section', verbose_name=u'Раздел', db_column='id_section')
     mint = models.ForeignKey('Mint', verbose_name=u'Монетный двор', null=True, blank=True, db_column='id_mint')
 
@@ -50,8 +50,11 @@ class Metal(models.Model):
         return u'%s' % (self.name,)
 
 
-class Edge(models.Model):
+class TypeEdge(models.Model):
     name = models.CharField(u'Вид гурта', max_length=50)
+
+    class Meta:
+        db_table = 'collection_type_edge'
 
     def __str__(self):
         return u'%s' % (self.name,)

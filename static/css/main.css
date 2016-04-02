@@ -11,25 +11,14 @@ body {
   font-family: "Trebuchet MS";
   height: 100%; }
 
-/*-----------------------------------*\
-                #BASE
-\*-----------------------------------*/
 ul {
   list-style: none; }
 
-/*-----------------------------------*\
-                #OBJECTS
-\*-----------------------------------*/
 #content {
-  margin: 0 auto;
+  margin: 0 auto 200px;
   width: 960px;
-  padding-bottom: 50px;
   min-height: 100%; }
 
-/*-----------------------------------*\
-                #COMPONENTS
-\*-----------------------------------*/
-/* Page-head */
 #section a:hover {
   text-decoration: underline; }
 
@@ -66,13 +55,19 @@ ul {
   color: #4c4c46;
   font-size: large; }
 
-div#detail {
+#detail {
   float: left;
   width: 50%;
-  margin: 0 0 0 20px; }
+  margin: 0 0 0 20px;
+  height: 100%; }
 
-div#detail p {
+#detail p {
   color: #4c4c46; }
+
+#detail > p {
+  text-decoration: underline;
+  padding-bottom: 10px;
+  cursor: pointer; }
 
 .rounded {
   counter-reset: li;
@@ -93,6 +88,9 @@ div#detail p {
 
 .rounded a:hover {
   background: #cfcec1; }
+
+.js-hidden {
+  display: none; }
 
 #header_menu {
   margin: 0 50px; }
@@ -132,9 +130,9 @@ header {
   margin-bottom: 10px; }
 
 footer {
-  height: 120px;
+  height: 50px;
+  margin-top: -50px;
   background-color: #3674b2;
-  width: 100%;
   color: #fff;
   font-size: 12px; }
 

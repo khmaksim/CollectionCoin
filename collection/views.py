@@ -4,7 +4,7 @@ from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
-from collection.models import Section, Coin, Metal, Edge, Collection
+from collection.models import Section, Coin, Metal, TypeEdge, Collection
 from collection.form import CoinForm, AddToCollectionForm, CollectionForm
 
 
@@ -44,16 +44,17 @@ def information_coin(request, id_coin):
     for metal in coin.metal.all():
         metal_list.append(metal.name)
 
-    if coin.edge is not None:
+    if coin.type_edge is not None:
         try:
-            edge = Edge.objects.get(id__exact=coin.edge.id)
-            edge_name = edge.name
+            type_edge = TypeEdge.objects.get(id__exact=coin.type_edge.id)
+            type_edge_name = type_edge.name
         except ObjectDoesNotExist:
-            edge_name = ""
+            type_edge_name = ""
     else:
-        edge_name = ""
+        type_edge_name = ""
 
-    coin_form = CoinForm(instance=coin, initial={'edge': edge_name, 'metal': ','.join(metal_list)}, label_suffix='')
+    coin_form = CoinForm(instance=coin, initial={'type_edge': type_edge_name, 'metal': ','.join(metal_list)},
+                         label_suffix='')
     return render_to_response('coin.html', {'coin': coin, 'coin_form': coin_form},
                               context_instance=RequestContext(request))
 
@@ -114,16 +115,17 @@ def coin_collection(request, id_collection):
     for metal in coin.metal.all():
         metal_list.append(metal.name)
 
-    if coin.edge is not None:
+    if coin.type_edge is not None:
         try:
-            edge = Edge.objects.get(id__exact=coin.edge.id)
-            edge_name = edge.name
+            type_edge = TypeEdge.objects.get(id__exact=coin.type_edge.id)
+            type_edge_name = type_edge.name
         except ObjectDoesNotExist:
-            edge_name = ""
+            type_edge_name = ""
     else:
-        edge_name = ""
+        type_edge_name = ""
 
-    coin_form = CoinForm(instance=coin, initial={'edge': edge_name, 'metal': ','.join(metal_list)}, label_suffix='')
+    coin_form = CoinForm(instance=coin, initial={'type_edge': type_edge_name, 'metal': ','.join(metal_list)},
+                         label_suffix='')
     collection_form = CollectionForm(instance=collection, label_suffix='')
 
     return render(request, 'coin_collection.html', {'coin': coin,

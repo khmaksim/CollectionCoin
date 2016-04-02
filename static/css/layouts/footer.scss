@@ -1,9 +1,9 @@
 @import '../global-vars/locals';
 
 footer {
-  height: 120px;
+  height: 50px;
+  margin-top: -50px;
   background-color: $main-color;
-  width: 100%;
   color: #fff;
   font-size: 12px;
 }

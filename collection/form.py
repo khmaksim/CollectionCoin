@@ -15,7 +15,7 @@ class CoinForm(ModelForm):
                    'diameter': TextInput(),
                    'thickness': TextInput(),
                    'metal': TextInput(),
-                   'edge': TextInput(),
+                   'type_edge': TextInput(),
                    'mint': Select(), }
 
 

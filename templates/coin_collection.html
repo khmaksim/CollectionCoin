@@ -36,7 +36,8 @@
             <form>
                 {% for field in coin_form %}
                     {% if not field.value|length_is:"0" and field.value != None %}
-                        <p>{{ field.label_tag }}</p>{{ field }}
+                        <p class="label">{{ field.label }}</p>
+                        <p>{{ field.value }}</p>
                     {% endif %}
                 {% endfor %}
             </form>

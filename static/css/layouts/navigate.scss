@@ -19,13 +19,14 @@
 }
 #breadcrumbs {
   margin: 10px 0px 10px 5px;
+  color: $text-dark-color;
 }
 #breadcrumbs li {
   display: inline;
 }
 #breadcrumbs a{
-    text-decoration: none;
-    color: #4C4C46;
+  text-decoration: none;
+  color: $text-dark-color;
 }
 #breadcrumbs a:hover{
     text-decoration: underline;

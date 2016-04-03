@@ -64,13 +64,17 @@ ul {
     margin: 0 0 0 20px;
     height: 100%;
 }
-#detail p{
-    color: $text-color;
-}
 #detail > p{
   text-decoration: underline;
   padding-bottom: 10px;
   cursor: pointer;
+}
+.label {
+  color: $text-light-color;
+  margin-bottom: 5px;
+}
+.label + p{
+  margin-bottom: 15px;
 }
 .rounded {
   counter-reset: li;

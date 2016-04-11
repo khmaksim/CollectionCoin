@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from user_account.form import AuthenticationForm, RegistrationForm, ProfileChangingEmailForm, ProfileChangingPasswordForm
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 
 def authentication(request):
@@ -27,13 +28,15 @@ def authentication(request):
 def registration(request):
     if request.method == 'POST':
         reg_form = RegistrationForm(request.POST, auto_id='%s')
+        email_username = reg_form.cleaned_data['email_signup']
 
-        if reg_form.is_valid():
-            if create_user(reg_form.cleaned_data['email_signup'], reg_form.cleaned_data['password_signup']):
-                user = authenticate(username=reg_form.cleaned_data['email_signup'],
+        if reg_form.is_valid() and checking_email_user(email_username):
+            if create_user(email_username, reg_form.cleaned_data['password_signup']):
+                user = authenticate(username=email_username,
                                     password=reg_form.cleaned_data['password_signup'])
                 if user is not None and user.is_active:
                     login(request, user)
+                    send_notice(email_username)
                     return HttpResponseRedirect('/')
     else:
         reg_form = RegistrationForm(auto_id='%s')
@@ -76,6 +79,21 @@ def profile(request):
                                             'changing_email_form': changing_email_form})
 
 
+def checking_email_user(email):
+    return User.objects.filter(email=email).count() == 0
+
+
 def create_user(email, password):
     user = User.objects.create_user(username=email, email=email, password=password)
     return user.save()
+
+
+def send_notice(recipient_email):
+    file = open('./static/notice.html', 'r')
+
+    subject = u'Регистрация на сайте mycollectioncoin.ru'
+    message = file.read()
+    from_email = 'qwerty@qwerty.ru'
+    recipient_list = [recipient_email]
+
+    send_mail(subject, message, from_email, recipient_list)

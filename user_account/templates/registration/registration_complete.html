@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация{% endblock %}
+{% block css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'user_account/css/auth.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'user_account/css/not-auth/animate-custom.css' %}" />
+{% endblock %}
+{% block content %}
+    <div class="message">
+        <p><ins>Мы Вас Поздравляем!</ins></p><br>
+        <p>Вы успешно зарегистрировались на сайте и можете приступать к созданию виртуальной коллекции.</p><br>
+        <em><small>Для подтверждения Ваших намерений на использование данного ресурса, на электронный адрес <a href="mailto:{{ user.email }}">{{ user.email }}</a>,
+        указзанный при регисрации, отправлено сообщение с дальнейшими инструкциями.</small></em>
+        <a class="button begin" href="{% url 'catalog' %}">Начать работу</a>
+    </div>
+{% endblock %}

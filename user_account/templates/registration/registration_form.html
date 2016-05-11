@@ -12,21 +12,24 @@
         <a class="hiddenanchor" id="tologin"></a>
         <div id="wrapper">
             <div id="login" class="animate form">
-                <form  action="../" autocomplete="on" method="post">
+                <form  action="{% url 'user_account:login' %}" autocomplete="on" method="post">
                     {% csrf_token %}
                     <h1>Войти</h1>
                     <p>
-                        <label for="{{ auth_form.your_login.name }}" data-icon="u">{{ auth_form.your_login.label }}</label>
-                        {{ auth_form.your_login }}
+                        <label for="{{ login_form.your_login.name }}" data-icon="u">{{ login_form.your_login.label }}</label>
+                        {{ login_form.your_login }}
+                        <span class="errors">{{ login_form.your_login.errors|join:' ' }}</span>
                     </p>
                     <p>
-                        <label for="{{ auth_form.your_password.name }}" data-icon="p">{{ auth_form.your_password.label }}</label>
-                        {{ auth_form.your_password }}
+                        <label for="{{ login_form.your_password.name }}" data-icon="p">{{ login_form.your_password.label }}</label>
+                        {{ login_form.your_password }}
+                        <span class="errors">{{ login_form.your_password.errors|join:' ' }}</span>
                     </p>
                     <p class="keeplogin">
-                        {{ auth_form.keep_me_login }}
-                        <label for="{{ auth_form.keep_me_login.name }}">{{ auth_form.keep_me_login.label }}</label>
+                        {{ login_form.keep_me_login }}
+                        <label for="{{ login_form.keep_me_login.name }}">{{ login_form.keep_me_login.label }}</label>
                     </p>
+                    <span class="errors">{{ login_form.non_field_errors|join:' ' }}</span>
                     <p class="login button">
                         <input type="submit" value="Войти" />
                     </p>
@@ -37,16 +40,18 @@
                 </form>
             </div>
             <div id="register" class="animate form">
-                <form  action="{% url 'user_account:registration' %}" autocomplete="on" method="post">
+                <form  action="{% url 'user_account:registration_register' 'toregister' %}" autocomplete="on" method="post">
                     {% csrf_token %}
                     <h1>Регистрация</h1>
                     <p>
-                        <label for="{{ reg_form.email_signup.name }}" data-icon="e">{{ reg_form.email_signup.label }}</label>
-                        {{ reg_form.email_signup }}
+                        <label for="{{ form.username.name }}" data-icon="e">{{ form.username.label }}</label>
+                        {{ form.username }}
+                        <span class="errors">{{ form.username.errors|join:' ' }}</span>
                     </p>
                     <p>
-                        <label for="{{ reg_form.password_signup.name }}" data-icon="p">Ваш пароль</label>
-                        {{ reg_form.password_signup }}
+                        <label for="{{ form.password1.name }}" data-icon="p">{{ form.password1.label }}</label>
+                        {{ form.password1 }}
+                        <span class="errors">{{ form.password1.errors|join:' ' }}</span>
                     </p>
                     <p id="user_agreement">
                         Нажимая кнопку &laquoЗарегистрироваться&raquo, Вы принимаете условия <a href="{% url 'user_account:user_agreement' %}">Пользовательского соглашения</a>.

@@ -18,7 +18,7 @@
                     <img src="{{ image.image.url }}" />
                 </div>
             {% endfor %}
-            <a href="{% url 'remove_from_collection' section.id collection.coin.id %}" class="remove_from_collection">Убрать из коллекции</a>
+            <a href="{% url 'remove_from_collection' section.id collection.coin.id %}" class=" button remove_from_collection">Убрать из коллекции</a>
         </div>
     {% endfor %}
 {% endblock %}

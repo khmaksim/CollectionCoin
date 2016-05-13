@@ -62,15 +62,14 @@ def information_coin(request, id_coin):
 def add_to_collection(request, id_coin):
     coin = Coin.objects.get(pk=id_coin)
 
-    if request.method == 'POST':
-        add_to_collection_form = AddToCollectionForm(request.POST, label_suffix='')
-        if add_to_collection_form.is_bound and add_to_collection_form.is_valid():
-            collection = add_to_collection_form.save(commit=False)
-            collection.coin = coin
-            collection.save()
-            return redirect('coins_section', id_section=coin.section_id)
-    else:
-        add_to_collection_form = AddToCollectionForm(label_suffix='')
+    add_to_collection_form = AddToCollectionForm(request.POST or None, label_suffix='')
+
+    if add_to_collection_form.is_bound and add_to_collection_form.is_valid():
+        collection = add_to_collection_form.save(commit=False)
+        collection.coin = coin
+        collection.user = request.user
+        collection.save()
+        return redirect('section_collection', id_section=coin.section_id)
 
     return render(request, 'add_to_collection.html', {'coin': coin,
                                                       'add_to_collection_form': add_to_collection_form})

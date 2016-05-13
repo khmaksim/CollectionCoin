@@ -14,9 +14,9 @@ label{
 	color: $text-color;
 	position: relative;
 }
-#detail input,
-#detail select,
-#detail textarea{
+input,
+select,
+textarea{
 	width: 100%;
 	margin: 4px 0 5px 0;
 	padding: 7px 5px 7px 5px;
@@ -27,4 +27,7 @@ label{
 }
 #detail select{
     width: 103%;
+}
+span.errors {
+  color: #ff645b;
 }

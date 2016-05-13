@@ -1,47 +1,54 @@
 __author__ = 'kolobok'
 
 from django.shortcuts import render
+from django.core.urlresolvers import reverse
+from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
-from user_account.form import AuthenticationForm, RegistrationForm, ProfileChangingEmailForm, ProfileChangingPasswordForm
+from django.contrib.auth import authenticate, login, views
+from user_account.form import AuthenticationUserForm as AuthForm, RegistrationForm, ProfileChangingEmailForm, \
+    ProfileChangingPasswordForm, PasswordResetFormInherited, SetPasswordFormInherited
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
+from registration.backends.hmac.views import RegistrationView
+
+
+def login_registration(request):
+    return render(request, 'registration/registration_form.html', {'login_form': AuthForm(auto_id='%s'),
+                                                                   'form': RegistrationForm(auto_id='%s')})
 
 
 def authentication(request):
-    if request.method == 'POST':
-        auth_form = AuthenticationForm(request.POST, auto_id='%s')
+    auth_form = AuthForm(request.POST or None, auto_id='%s')
 
-        if auth_form.is_valid():
-            user = authenticate(username=auth_form.cleaned_data['your_login'],
-                                password=auth_form.cleaned_data['your_password'])
-            if user is not None and user.is_active:
-                login(request, user)
-                print(request.user.is_authenticated())
-                return HttpResponseRedirect('/')
-    else:
-        auth_form = AuthenticationForm(auto_id='%s')
+    if auth_form.is_valid():
+        user = authenticate(username=auth_form.cleaned_data['your_email'],
+                            password=auth_form.cleaned_data['your_password'])
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect('/')
+        else:
+            auth_form.add_error(None, u'Адрес электронной почты или пароль указан не верно')
 
-    return render(request, 'login.html', {'auth_form': auth_form, 'reg_form': RegistrationForm(auto_id='%s')})
+    return render(request, 'registration/registration_form.html', {'login_form': auth_form,
+                                                                   'form': RegistrationForm(auto_id='%s')})
 
 
-def registration(request):
-    if request.method == 'POST':
-        reg_form = RegistrationForm(request.POST, auto_id='%s')
-        email_username = reg_form.cleaned_data['email_signup']
-
-        if reg_form.is_valid() and checking_email_user(email_username):
-            if create_user(email_username, reg_form.cleaned_data['password_signup']):
-                user = authenticate(username=email_username,
-                                    password=reg_form.cleaned_data['password_signup'])
-                if user is not None and user.is_active:
-                    login(request, user)
-                    send_notice(email_username)
-                    return HttpResponseRedirect('/')
-    else:
-        reg_form = RegistrationForm(auto_id='%s')
-
-    return render(request, 'login.html', {'auth_form': AuthenticationForm(auto_id='%s'), 'reg_form': reg_form})
+# def registration(request):
+    # if request.method == 'POST':
+    #     reg_form = RegistrationForm(request.POST, auto_id='%s')
+    #     email_username = reg_form.cleaned_data['email_signup']
+    #
+    #     if reg_form.is_valid() and checking_email_user(email_username):
+    #         if create_user(email_username, reg_form.cleaned_data['password_signup']):
+    #             user = authenticate(username=email_username,
+    #                                 password=reg_form.cleaned_data['password_signup'])
+    #             if user is not None and user.is_active:
+    #                 login(request, user)
+    #                 send_notice(email_username)
+    #                 return HttpResponseRedirect('/')
+    # else:
+    #     reg_form = RegistrationForm(auto_id='%s')
+    #
+    # return render(request, 'registration/registration_form.html', {'auth_form': AuthenticationForm(auto_id='%s'), 'reg_form': reg_form})
 
 
 def user_agreement(request):
@@ -79,21 +86,65 @@ def profile(request):
                                             'changing_email_form': changing_email_form})
 
 
-def checking_email_user(email):
-    return User.objects.filter(email=email).count() == 0
+# def create_user(email, password):
+#     user = User.objects.create_user(username=email, email=email, password=password)
+#     return user.save()
 
 
-def create_user(email, password):
-    user = User.objects.create_user(username=email, email=email, password=password)
-    return user.save()
+class RegisterView(RegistrationView):
+    def create_inactive_user(self, form):
+        new_user = form.save(commit=False)
+        new_user.email = form.cleaned_data['username']
+        new_user.is_active = False
+        new_user.save()
+
+        # user authorization and login
+        if new_user is not None:
+            auth_user = authenticate(username=form.cleaned_data['username'],
+                                     password=form.cleaned_data['password1'])
+            if auth_user is not None:
+                login(self.request, auth_user)
+
+        # send notice
+        self.send_activation_email(new_user)
+        return new_user
+
+    def get_success_url(self, user):
+        return 'user_account:registration_complete'
+
+@csrf_protect
+def password_reset(request):
+    template_response = views.password_reset(request,
+                                             template_name='password_reset_form.html',
+                                             email_template_name='password_reset_email.html',
+                                             subject_template_name='password_reset_subject.txt',
+                                             password_reset_form=PasswordResetFormInherited,
+                                             post_reset_redirect=reverse('user_account:password_reset_done'))
+
+    return template_response
 
 
-def send_notice(recipient_email):
-    file = open('./static/notice.html', 'r')
+@csrf_protect
+def password_reset_done(request):
+    template_response = views.password_reset_done(request, template_name='password_reset_done.html')
+    return template_response
 
-    subject = u'Регистрация на сайте mycollectioncoin.ru'
-    message = file.read()
-    from_email = 'qwerty@qwerty.ru'
-    recipient_list = [recipient_email]
 
-    send_mail(subject, message, from_email, recipient_list)
+@csrf_protect
+def password_reset_confirm(request, uidb64, token):
+    template_response = views.password_reset_confirm(request,
+                                                     template_name='password_reset_confirm.html',
+                                                     post_reset_redirect=reverse('user_account:password_reset_complete'),
+                                                     set_password_form=SetPasswordFormInherited,
+                                                     uidb64=uidb64,
+                                                     token=token)
+
+    return template_response
+
+
+@csrf_protect
+def password_reset_complete(request):
+    template_response = views.password_reset_complete(request,
+                                                      template_name='password_reset_complete.html')
+
+    return template_response

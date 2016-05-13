@@ -8,6 +8,8 @@
             <ul class="rounded">
                 {% block section %}{% endblock %}
             </ul>
+        {% elif section_list|length_is:0 %}
+            {% block message %}{% endblock %}
         {% endif %}
     {% endif %}
 {% endblock %}

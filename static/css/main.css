@@ -19,6 +19,10 @@ ul {
   width: 960px;
   min-height: 100%; }
 
+.center_block {
+  margin: 0 auto;
+  width: 500px; }
+
 #section a:hover {
   text-decoration: underline; }
 
@@ -95,6 +99,12 @@ ul {
 
 .js-hidden {
   display: none; }
+
+.message {
+  border: 1px solid #3674b2;
+  text-align: center;
+  padding: 30px;
+  margin: 50px 0; }
 
 #header_menu {
   margin: 0 50px; }
@@ -184,61 +194,61 @@ footer {
 .save_button:hover {
   background: #61A8F0; }
 
-.add_to_collection {
+.button {
   display: block;
   text-decoration: none;
   user-select: none;
-  margin: 15px 10px;
   text-align: center;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none; }
+
+.add_to_collection {
+  margin: 15px 10px;
   background: #f7ae32;
   color: #fff;
   padding: 4px 0px;
-  outline: none;
-  border-radius: 3px;
-  cursor: pointer;
   font-size: 14px; }
 
 .add_to_collection:hover {
   background: #FFB434; }
 
 .remove_from_collection {
-  display: block;
-  text-decoration: none;
-  user-select: none;
   margin: 15px 10px;
-  text-align: center;
-  background: #f7ae32;
-  color: #fff;
+  color: #42423c;
   padding: 4px 0px;
-  outline: none;
-  border-radius: 3px;
-  cursor: pointer;
   font-size: 14px; }
 
 .remove_from_collection:hover {
+  text-decoration: underline; }
+
+.begin {
+  margin: 20px auto 0px;
+  background: #f7ae32;
+  color: #fff;
+  padding: 4px 0px;
+  font-size: 14px;
+  width: 150px; }
+
+.begin:hover {
   background: #FFB434; }
 
-#profile p.button input,
-#wrapper p.button input {
+p.button input {
   width: 100%;
   cursor: pointer;
   background: #3674b2;
-  padding: 5px 0px;
-  font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+  font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
   color: #ffffff;
   font-size: 24px;
   border: 1px solid #295887;
-  margin-bottom: 5px;
+  margin: 10px 0;
   border-radius: 3px; }
 
-#profile p.button input:hover,
-#wrapper p.button input:hover {
+p.button input:hover {
   background: #3697B2; }
 
-#profile p.button input:active,
-#profile p.button input:focus,
-#wrapper p.button input:active,
-#wrapper p.button input:focus {
+p.button input:active,
+p.button input:focus {
   background: #2C7B91;
   position: relative;
   top: 1px;
@@ -259,9 +269,9 @@ label {
   color: #42423c;
   position: relative; }
 
-#detail input,
-#detail select,
-#detail textarea {
+input,
+select,
+textarea {
   width: 100%;
   margin: 4px 0 5px 0;
   padding: 7px 5px 7px 5px;
@@ -273,13 +283,12 @@ label {
 #detail select {
   width: 103%; }
 
-#profile {
-  margin: 0 auto;
-  width: 500px; }
+span.errors {
+  color: #ff645b; }
 
-#profile h3 {
+form > h3 {
   text-align: center;
-  padding-bottom: 10px; }
+  padding: 10px 0; }
 
 #profile p {
   margin-bottom: 15px; }
@@ -289,7 +298,6 @@ label {
 
 #profile input:not([type="checkbox"]) {
   width: 98%;
-  margin-top: 4px;
   padding: 10px 5px 10px 5px; }
 
 /*# sourceMappingURL=main.css.map */

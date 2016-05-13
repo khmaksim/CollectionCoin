@@ -33,7 +33,7 @@
                 {% endfor %}
             </form>
             <p>Основные характеристики монеты</p>
-            <form>
+            <form class="js-hidden">
                 {% for field in coin_form %}
                     {% if not field.value|length_is:"0" and field.value != None %}
                         <p class="label">{{ field.label }}</p>

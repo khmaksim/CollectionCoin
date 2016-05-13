@@ -1,101 +1,130 @@
 @import '../global-vars/locals';
 
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, fieldset, input, textarea, p, blockquote {
-    margin: 0;
-    padding: 0;
+  margin:  0;
+  padding: 0;
 }
+
 html {
   height: 100%;
 }
+
 body {
-  min-width: 960px;
-  margin: 0 auto;
+  min-width:   960px;
+  margin:      0 auto;
   font-family: "Trebuchet MS";
-  height: 100%;
+  height:      100%;
 }
+
 ul {
   list-style: none;
 }
+
 #content {
-  margin: 0 auto 200px;
-  width: 960px;
+  margin:     0 auto 200px;
+  width:      960px;
   min-height: 100%;
 }
-#section a:hover {
-    text-decoration: underline;
-}
-.coin {
-    width: 180px;
-    height: 250px;
-    border: solid 1px #ABAA9D;
-    float: left;
-    margin: 5px 5px 5px 5px;
-    border-radius: 5px;
-}
-.image_coin{
-    width: 150px;
-    height: 150px;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: 0 auto;
-}
-.image_coin img{
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border: none;
-}
-.header_coin{
-    margin: 10px auto;
-    text-align: center;
-}
-.header_coin a{
-    text-decoration: none;
-    color: $text-color;
-    font-size: large;
+
+.center_block {
+  margin: 0 auto;
+  width:  500px;
 }
 
-#detail{
-    float: left;
-    width: 50%;
-    margin: 0 0 0 20px;
-    height: 100%;
-}
-#detail > p{
+#section a:hover {
   text-decoration: underline;
-  padding-bottom: 10px;
-  cursor: pointer;
 }
+
+.coin {
+  width:         180px;
+  height:        250px;
+  border:        solid 1px #ABAA9D;
+  float:         left;
+  margin:        5px 5px 5px 5px;
+  border-radius: 5px;
+}
+
+.image_coin {
+  width:  150px;
+  height: 150px;
+  top:    0;
+  right:  0;
+  bottom: 0;
+  left:   0;
+  margin: 0 auto;
+}
+
+.image_coin img {
+  max-width: 100%;
+  height:    auto;
+  display:   block;
+  margin:    0 auto;
+  border:    none;
+}
+
+.header_coin {
+  margin:     10px auto;
+  text-align: center;
+}
+
+.header_coin a {
+  text-decoration: none;
+  color:           $text-color;
+  font-size:       large;
+}
+
+#detail {
+  float:  left;
+  width:  50%;
+  margin: 0 0 0 20px;
+  height: 100%;
+}
+
+#detail > p {
+  text-decoration: underline;
+  padding-bottom:  10px;
+  cursor:          pointer;
+}
+
 .label {
-  color: $text-light-color;
+  color:         $text-light-color;
   margin-bottom: 5px;
 }
-.label + p{
+
+.label + p {
   margin-bottom: 15px;
 }
+
 .rounded {
   counter-reset: li;
-  list-style: none;
-  font-size: 16px;
-  padding: 0;
+  list-style:    none;
+  font-size:     16px;
+  padding:       0;
 }
+
 .rounded a {
-  position: relative;
-  display: block;
-  padding: 10px 10px 10px 10px;
-  margin: .5em 0;
-  background: #fff;
-  border: solid 1px #ABAA9D;
-  color: $text-color;
+  position:        relative;
+  display:         block;
+  padding:         10px 10px 10px 10px;
+  margin:          .5em 0;
+  background:      #fff;
+  border:          solid 1px #ABAA9D;
+  color:           $text-color;
   text-decoration: none;
-  border-radius: 3px;
+  border-radius:   3px;
 }
+
 .rounded a:hover {
   background: #cfcec1;
 }
+
 .js-hidden {
   display: none;
+}
+
+.message {
+  border:     1px solid $main-color;
+  text-align: center;
+  padding:    30px;
+  margin:     50px 0;
 }

@@ -5,7 +5,17 @@
 {% endblock %}
 
 {% block section %}
-    {%  for section in section_list %}
+    {% for section in section_list %}
         <li><a href="{% url 'section_collection' section.id %}"><h3>{{ section.name }}</h3></a></li>
     {% endfor %}
+{% endblock %}
+
+{% block message %}
+    <div class="message">
+        <p><ins>Уважаемы пользователь</ins></p><br>
+        <p>В Вашей коллекции ещё нет ни одной монеты!<br>
+            Давайте добавим монеты из каталога!
+        </p>
+        <a class="button begin" href="{% url 'catalog' %}">Добавить монеты</a>
+    </div>
 {% endblock %}

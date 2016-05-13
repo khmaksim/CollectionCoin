@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
     'collection',
     'user_account',
 )
@@ -126,15 +125,25 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # django-registration
 ACCOUNT_ACTIVATION_DAYS = 1
 
-AUTH_USER_EMAIL_UNIQUE = True
+# AUTH_USER_EMAIL_UNIQUE = True
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'info_mycollectioncoin@pochtamycollectioncoin.ru'
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'kh.maksim@gmail.com'
+# EMAIL_HOST_PASSWORD = 'qwe098ASD_11'
+# # EMAIL_USE_TLS = False
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -19,7 +19,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from collection import settings
 from collection.views import main, section_catalog, section_collection, \
-    information_coin, add_to_collection, my_collection, catalog, remove_from_collection, coin_collection
+    coin_catalog, add_to_collection, my_collection, catalog, remove_from_collection, coin_collection
 
 urlpatterns = [
     url(r'^$', main),
@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^collection/([0-9]+)/(?P<id_coin>[0-9]+)/remove/$', remove_from_collection, name='remove_from_collection'),
     url(r'^catalog/$', catalog, name='catalog'),
     url(r'^catalog/(?P<id_section>[0-9]+)/$', section_catalog, name='section_catalog'),
-    url(r'^catalog/([0-9]+)/(?P<id_coin>[0-9]+)/$', information_coin, name='information_coin'),
+    url(r'^catalog/([0-9]+)/(?P<id_coin>[0-9]+)/$', coin_catalog, name='coin_catalog'),
     url(r'^catalog/([0-9]+)/(?P<id_coin>[0-9]+)/add/$', add_to_collection, name='add_to_collection'),
 ]
 

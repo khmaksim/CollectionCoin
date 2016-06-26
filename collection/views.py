@@ -37,7 +37,7 @@ def section_catalog(request, id_section):
                               context_instance=RequestContext(request))
 
 
-def information_coin(request, id_coin):
+def coin_catalog(request, id_coin):
     coin = Coin.objects.get(pk=id_coin)
 
     metal_list = []

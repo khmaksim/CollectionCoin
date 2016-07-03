@@ -9,7 +9,7 @@
 {% block content %}
     {% for coin in coins %}
         <div class="coin">
-            <div class="header_coin"><a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a></div>
+            <div class="header_coin"><a href="{% url 'coin_catalog' section.id coin.id %}">{{ coin.name }}</a></div>
             {% for image in coin.image_set.all|slice:":1" %}
                 <div class="image_coin">
                     <img src="{{ image.image.url }}" />

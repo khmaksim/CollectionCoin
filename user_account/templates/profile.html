@@ -2,51 +2,17 @@
 
 {% block title %}Профиль{% endblock %}
 
-{% block breadcrumbs %}Профиль{% endblock %}
+{% block breadcrumbs %}
+    <li>Профиль</li>
+{% endblock %}
+
 {% block content %}
-    <div class="center_block">
-        <div id="profile">
-            <section>
-                <form action="." method="post">
-                    {% csrf_token %}
-                    <h3>Сменить email</h3>
-
-                    <p>{% if changing_email_form.saved %}Сохранено{% endif %}</p>
-
-                    <p>
-                        <label for="{{ changing_email_form.email.name }}">{{ changing_email_form.email.label }}</label>
-                        {{ changing_email_form.email }}
-                    </p>
-
-                    <p class="login button">
-                        <input type="submit" value="Сохранить"/>
-                    </p>
-                </form>
-            </section>
-            <section>
-                <form action="." method="post">{% csrf_token %}
-                    <h3>Сменить пароль</h3>
-
-                    <p>{% if changing_password_form.saved %}Сохранено{% endif %}</p>
-
-                    <p>
-                        <label for="{{ changing_password_form.password_old.name }}">{{ changing_password_form.password_old.label }}</label>
-                        {{ changing_password_form.password_old }}
-                    </p>
-
-                    <p>
-                        <label for="{{ changing_password_form.password_new.name }}">{{ changing_password_form.password_new.label }}</label>
-                        {{ changing_password_form.password_new }}
-                    </p>
-                    {#                <p>#}
-                    {#                    <label for="{{ changing_password_form.password_new_repeat.name }}">{{ changing_password_form.password_new_repeat.label }}</label>#}
-                    {#                    {{ changing_password_form.password_new_repeat }}#}
-                    {#                </p>#}
-                    <p class="login button">
-                        <input type="submit" value="Сохранить"/>
-                    </p>
-                </form>
-            </section>
-        </div>
+    <div class="profile-menu">
+        <ul>
+            <li><a href="{% url 'user_account:changing_password' %}">Изменить пароль</a></li>
+            <li><a href="{% url 'user_account:changing_email' %}">Изменить электронную почту</a></li>
+        </ul>
     </div>
+    {% block subcontent %}
+    {% endblock %}
 {% endblock %}

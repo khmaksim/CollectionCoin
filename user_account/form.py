@@ -50,13 +50,13 @@ class RegistrationForm(UserCreationForm):
         ]
 
 
-class ProfileChangingEmailForm(forms.Form):
-    saved = False
+class ChangingEmailForm(forms.Form):
+    # saved = False
     email = forms.EmailField(label=u'Ваш адрес электронной почты', required=True)
 
 
-class ProfileChangingPasswordForm(forms.Form):
-    saved = False
+class ChangingPasswordForm(forms.Form):
+    # saved = False
     password_old = forms.CharField(label=u'Старый пароль', widget=forms.PasswordInput(), required=True)
     password_new = forms.CharField(label=u'Новый пароль', widget=forms.PasswordInput(), required=True)
     # password_new_repeat = forms.CharField(label=u'Повторить новый пароль', widget=forms.PasswordInput(), required=True)

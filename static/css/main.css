@@ -300,4 +300,12 @@ form > h3 {
   width: 98%;
   padding: 10px 5px 10px 5px; }
 
+.profile-menu {
+  margin-left: 5px;
+  float: left; }
+
+.profile-menu a {
+  text-decoration: none;
+  color: #67b3ff; }
+
 /*# sourceMappingURL=main.css.map */

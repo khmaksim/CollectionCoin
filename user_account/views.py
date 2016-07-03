@@ -3,10 +3,12 @@ __author__ = 'kolobok'
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, views
-from user_account.form import AuthenticationUserForm as AuthForm, RegistrationForm, ProfileChangingEmailForm, \
-    ProfileChangingPasswordForm, PasswordResetFormInherited, SetPasswordFormInherited
+from django.views.generic.edit import FormView
+from user_account.form import AuthenticationUserForm as AuthForm, RegistrationForm, ChangingEmailForm, \
+    ChangingPasswordForm, PasswordResetFormInherited, SetPasswordFormInherited
 from django.contrib.auth.models import User
 from registration.backends.hmac.views import RegistrationView
 
@@ -20,13 +22,15 @@ def authentication(request):
     auth_form = AuthForm(request.POST or None, auto_id='%s')
 
     if auth_form.is_valid():
-        user = authenticate(username=auth_form.cleaned_data['your_email'],
-                            password=auth_form.cleaned_data['your_password'])
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect('/')
-        else:
-            auth_form.add_error(None, u'Адрес электронной почты или пароль указан не верно')
+        login_user = User.objects.get(email=auth_form.cleaned_data['your_email'])
+        if login_user:
+            user = authenticate(username=login_user.username,
+                                password=auth_form.cleaned_data['your_password'])
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/')
+
+        auth_form.add_error(None, u'Адрес электронной почты или пароль указан не верно')
 
     return render(request, 'registration/registration_form.html', {'login_form': auth_form,
                                                                    'form': RegistrationForm(auto_id='%s')})
@@ -55,35 +59,75 @@ def user_agreement(request):
     return render(request, 'user_agreement.html')
 
 
-def profile(request):
-    user = request.user
+# @login_required
+class ChangingEmailView(FormView):
+    template_name = 'changing_email_form.html'
+    form_class = ChangingEmailForm
+    success_url = '.'
 
-    if request.method == 'POST':
-        changing_email_form = ProfileChangingEmailForm(request.POST, initial={'email': user.email})
-        if changing_email_form.has_changed():
-            if changing_email_form.is_bound and changing_email_form.is_valid():
-                user.email = changing_email_form.cleaned_data['email']
-                user.save()
-                changing_email_form.saved = True
+    def get_initial(self):
+        initial = super(ChangingEmailView, self).get_initial()
+        initial['email'] = self.request.user.email
+        return initial
 
-        changing_password_form = ProfileChangingPasswordForm(request.POST,
-                                                             initial={'password_old': user.password,
-                                                                      'password_new': ''})
-        if changing_password_form.has_changed():
-            if changing_password_form.is_bound and changing_password_form.is_valid():
-                password_new = changing_password_form.cleaned_data['password_new']
-                password_old = changing_password_form.cleaned_data['password_old']
-                if password_new != password_old and user.check_password(password_old):
-                    user.set_password(password_new)
-                    user.save()
-                    changing_password_form.saved = True
 
-    else:
-        changing_email_form = ProfileChangingEmailForm({'email': user.email})
-        changing_password_form = ProfileChangingPasswordForm()
+    def form_valid(self, form):
+        user = self.request.user
 
-    return render(request, 'profile.html', {'changing_password_form': changing_password_form,
-                                            'changing_email_form': changing_email_form})
+        user.email = form.cleaned_data['email']
+        user.save()
+        return super(ChangingEmailView, self).form_valid(form)
+
+
+# @login_required
+class ChangingPasswordView(FormView):
+    form_class = ChangingPasswordForm
+    template_name = 'changing_password_form.html'
+    success_url = '.'
+
+    def form_valid(self, form):
+        user = self.request.user
+
+        password_new = form.cleaned_data['password_new']
+        password_old = form.cleaned_data['password_old']
+        if password_new != password_old and user.check_password(password_old):
+            user.set_password(password_new)
+            user.save()
+            return super(ChangingPasswordView, self).form_valid(form)
+        else:
+            return super(ChangingPasswordView, self).form_invalid(form)
+
+
+# def profile(request):
+#     user = request.user
+#
+#     if request.method == 'POST':
+#         changing_email_form = ProfileChangingEmailForm(request.POST, initial={'email': user.email})
+#
+#         if changing_email_form.has_changed():
+#             if changing_email_form.is_bound and changing_email_form.is_valid():
+#                 user.email = changing_email_form.cleaned_data['email']
+#                 user.save()
+#                 changing_email_form.saved = True
+#
+#         changing_password_form = ProfileChangingPasswordForm(request.POST,
+#                                                              initial={'password_old': user.password,
+#                                                                       'password_new': ''})
+#         if changing_password_form.has_changed():
+#             if changing_password_form.is_bound and changing_password_form.is_valid():
+#                 password_new = changing_password_form.cleaned_data['password_new']
+#                 password_old = changing_password_form.cleaned_data['password_old']
+#                 if password_new != password_old and user.check_password(password_old):
+#                     user.set_password(password_new)
+#                     user.save()
+#                     changing_password_form.saved = True
+#
+#     else:
+#         changing_email_form = ProfileChangingEmailForm({'email': user.email})
+#         changing_password_form = ProfileChangingPasswordForm()
+#
+#     return render(request, 'profile.html', {'changing_password_form': changing_password_form,
+#                                             'changing_email_form': changing_email_form})
 
 
 # def create_user(email, password):
@@ -112,6 +156,7 @@ class RegisterView(RegistrationView):
     def get_success_url(self, user):
         return 'user_account:registration_complete'
 
+
 @csrf_protect
 def password_reset(request):
     template_response = views.password_reset(request,
@@ -120,7 +165,6 @@ def password_reset(request):
                                              subject_template_name='password_reset_subject.txt',
                                              password_reset_form=PasswordResetFormInherited,
                                              post_reset_redirect=reverse('user_account:password_reset_done'))
-
     return template_response
 
 
@@ -146,5 +190,4 @@ def password_reset_confirm(request, uidb64, token):
 def password_reset_complete(request):
     template_response = views.password_reset_complete(request,
                                                       template_name='password_reset_complete.html')
-
     return template_response

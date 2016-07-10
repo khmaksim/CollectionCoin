@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login, views
+from django.contrib.auth import authenticate, login, views, update_session_auth_hash
 from django.views.generic.edit import FormView
 from user_account.form import AuthenticationUserForm as AuthForm, RegistrationForm, ChangingEmailForm, \
     ChangingPasswordForm, PasswordResetFormInherited, SetPasswordFormInherited
@@ -70,7 +70,6 @@ class ChangingEmailView(FormView):
         initial['email'] = self.request.user.email
         return initial
 
-
     def form_valid(self, form):
         user = self.request.user
 
@@ -93,6 +92,7 @@ class ChangingPasswordView(FormView):
         if password_new != password_old and user.check_password(password_old):
             user.set_password(password_new)
             user.save()
+            update_session_auth_hash(self.request, user)
             return super(ChangingPasswordView, self).form_valid(form)
         else:
             return super(ChangingPasswordView, self).form_invalid(form)

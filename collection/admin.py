@@ -15,6 +15,7 @@ class CoinAdmin(admin.ModelAdmin):
     fields = ['section', 'name', 'circulation', 'inscription', 'year', 'weight', 'diameter', 'thickness', 'metal',
               'type_edge', 'mint']
     inlines = [ImageAdmin, ]
+    ordering = ['-year', ]
 
 admin.site.register(Coin, CoinAdmin)
 admin.site.register(Section)

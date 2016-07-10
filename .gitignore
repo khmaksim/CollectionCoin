@@ -3,3 +3,6 @@ media/images/
 .idea/
 */migrations/
 *.css.map
+user_account/static/user_account/css/member/.sass-cache
+static/css/.sass-cache
+

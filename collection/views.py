@@ -1,9 +1,6 @@
-__author__ = 'kolobok'
-
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
 from collection.models import Section, Coin, Metal, TypeEdge, Collection
 from collection.form import CoinForm, AddToCollectionForm, CollectionForm
 
@@ -30,11 +27,10 @@ def catalog(request):
 
 
 def section_catalog(request, id_section):
-    coins = Coin.objects.filter(section=id_section)
+    coins = Coin.objects.filter(section=id_section).order_by('name')
     section = Section.objects.get(pk=id_section)
     return render_to_response('section.html', {'section': section,
-                                               'coins': coins},
-                              context_instance=RequestContext(request))
+                                               'coins': coins}, context_instance=RequestContext(request))
 
 
 def information_coin(request, id_coin):

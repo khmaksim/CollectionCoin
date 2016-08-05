@@ -3,3 +3,4 @@ media/images/
 .idea/
 */migrations/
 *.css.map
+.sass-cache/

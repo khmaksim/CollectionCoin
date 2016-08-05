@@ -1,5 +1,3 @@
-__author__ = 'kolobok'
-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -25,7 +23,7 @@ class Mint(models.Model):
     name = models.CharField(u'Наименование', max_length=100)
 
     def __str__(self):
-        return u'%s %s %s %s' % (self.name, self.year, self.inscription, self.circulation,)
+        return u'%s' % (self.name, )
 
 
 class Image(models.Model):

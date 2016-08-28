@@ -3,20 +3,20 @@
 {% block title %}{{ section.name }}{% endblock %}
 
 {% block breadcrumbs %}
-    <a href="{% url 'catalog' %}">Каталог</a> |
-    {{ section.name }}
+<li><a href="{% url 'catalog' %}">Каталог</a></li> |
+<li>{{ section.name }}</li>
 {% endblock %}
 
 {% block content %}
-    {% for coin in coins %}
-        <div class="coin">
-            <div class="header_coin"><a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a></div>
-            {% for image in coin.image_set.all|slice:":1" %}
-                <div class="image_coin">
-                    <img src="{{ image.image.url }}" />
-                </div>
-            {% endfor %}
-            <a href="{% url 'add_to_collection' section.id coin.id %}" class="add_to_collection">Добавить в коллекцию</a>
-        </div>
+{% for coin in coins %}
+<div class="coin">
+    <div class="header_coin"><a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a></div>
+    {% for image in coin.image_set.all|slice:":1" %}
+    <div class="image_coin">
+        <img src="{{ image.image.url }}"/>
+    </div>
     {% endfor %}
+    <a href="{% url 'add_to_collection' section.id coin.id %}" class="add_to_collection">Добавить в коллекцию</a>
+</div>
+{% endfor %}
 {% endblock %}

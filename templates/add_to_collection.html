@@ -1,43 +1,47 @@
 {% extends "base.html" %}
 
-{% block title %}{{ coin.name }} | {{ coin.section }}{% endblock %}
-    {% load staticfiles %}
+{% block title %}{{ coin.name }} - {{ coin.section }}{% endblock %}
+
+{% load staticfiles %}
+
 {% block css %}
-    <link type="text/css"  rel="stylesheet" href="{% static 'css/smslider.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/smslider.css' %}"/>
 {% endblock %}
+
 {% block js %}
-    <script type="text/javascript" src="{% static 'js/jquery.smslider.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.smslider.min.js' %}"></script>
 {% endblock %}
 
 {% block breadcrumbs %}
-    <a href="{% url 'catalog' %}">Каталог</a> |
-    <a href="{% url 'section_catalog' coin.section.id %}">{{ coin.section }}</a> |
-    {{ coin.name }}
+<li><a href="{% url 'catalog' %}">Каталог</a></li> |
+<li><a href="{% url 'section_catalog' coin.section.id %}">{{ coin.section }}</a></li> |
+<li>{{ coin.name }}</li>
 {% endblock %}
 
 {% block content %}
-    <div id="coin">
-        <div class="sm_slider">
-            <ul>
-                {% for image in coin.image_set.all %}
-                    <li><img src="{{ image.image.url }}" alt="Photo" /></li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div id="detail">
-            <form action="." method="post">{% csrf_token %}
-                {% for field in add_to_collection_form %}
-                    <p>{{ field.label_tag }}</p>{{ field }}
-                {% endfor %}
-                <button class="save_button" type="submit">Сохранить</button>
-            </form>
-        </div>
+<div id="coin">
+    <div class="sm_slider">
+        <ul>
+            {% for image in coin.image_set.all %}
+            <li><img src="{{ image.image.url }}" alt="Photo"/></li>
+            {% endfor %}
+        </ul>
     </div>
+    <div id="detail">
+        <form action="." method="post">{% csrf_token %}
+            {% for field in add_to_collection_form %}
+            <p>{{ field.label_tag }}</p>{{ field }}
+            {% endfor %}
+            <button class="save_button" type="submit">Сохранить</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
+
 {% block javascript %}
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $('.sm_slider').smSlider({pagination : false});
-        })
-    </script>
+        });
+</script>
 {% endblock %}

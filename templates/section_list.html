@@ -3,15 +3,15 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block breadcrumbs %}
-    <h3>Каталог</h3>
+<li>Каталог</li>
 {% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        {% if section_list %}
-            <ul class="left_nav">
-                {% block section %}{% endblock %}
-            </ul>
-        {% endif %}
-    {% endif %}
+{% if user.is_authenticated %}
+{% if section_list %}
+<ul class="left_nav">
+    {% block section %}{% endblock %}
+</ul>
+{% endif %}
+{% endif %}
 {% endblock %}

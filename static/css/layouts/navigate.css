@@ -14,18 +14,20 @@
 #header_menu a:hover {
   text-decoration: underline; }
 
-#breadcrumbs {
+.breadcrumbs {
   color: #393933;
-  padding: 10px 0px 10px 0px; }
+  padding: 10px 0px 10px 0px;
+  font-size: 14px;
+  font-weight: bold; }
 
-#breadcrumbs li {
+.breadcrumbs li {
   display: inline; }
 
-#breadcrumbs a {
+.breadcrumbs a {
   text-decoration: none;
   color: #393933; }
 
-#breadcrumbs a:hover {
+.breadcrumbs a:hover {
   text-decoration: underline; }
 
 .nav_catalog {

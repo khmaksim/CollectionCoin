@@ -1,57 +1,62 @@
 {% extends "base.html" %}
 
-{% block title %}{{ coin.name }} | {{ coin.section }}{% endblock %}
-    {% load staticfiles %}
+{% block title %}{{ coin.name }} - {{ coin.section }}{% endblock %}
+
+{% load staticfiles %}
+
 {% block css %}
-    <link type="text/css"  rel="stylesheet" href="{% static 'css/smslider.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'css/smslider.css' %}"/>
 {% endblock %}
+
 {% block js %}
-    <script type="text/javascript" src="{% static 'js/jquery.smslider.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.smslider.min.js' %}"></script>
 {% endblock %}
 
 {% block breadcrumbs %}
-    <li><a href="{% url 'collection' %}">Моя коллекция</a> |</li>
-    <li><a href="{% url 'section_collection' coin.section.id %}">{{ coin.section.name }}</a> |</li>
-    <li>{{ coin.name }}</li>
+<li><a href="{% url 'collection' %}">Моя коллекция</a> |</li>
+<li><a href="{% url 'section_collection' coin.section.id %}">{{ coin.section.name }}</a> |</li>
+<li>{{ coin.name }}</li>
 {% endblock %}
+
 {% block content %}
-    <div id="coin">
-        <div class="sm_slider">
-            <ul>
-                {% for image in coin.image_set.all %}
-                    <li><img src="{{ image.image.url }}" alt="Photo" /></li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div id="detail">
-            <p>Колекционные характеристики монеты</p>
-            <form>
-                {% for field in collection_form %}
-                    {% if not field.value|length_is:"0" and field.value != None %}
-                        <p>{{ field.label_tag }}</p>{{ field }}
-                    {% endif %}
-                {% endfor %}
-            </form>
-            <p>Основные характеристики монеты</p>
-            <form>
-                {% for field in coin_form %}
-                    {% if not field.value|length_is:"0" and field.value != None %}
-                        <p class="label">{{ field.label }}</p>
-                        <p>{{ field.value }}</p>
-                    {% endif %}
-                {% endfor %}
-            </form>
-        </div>
+<div id="coin">
+    <div class="sm_slider">
+        <ul>
+            {% for image in coin.image_set.all %}
+            <li><img src="{{ image.image.url }}" alt="Photo"/></li>
+            {% endfor %}
+        </ul>
     </div>
+    <div id="detail">
+        <p>Колекционные характеристики монеты</p>
+        <form>
+            {% for field in collection_form %}
+            {% if not field.value|length_is:"0" and field.value != None %}
+            <p>{{ field.label_tag }}</p>{{ field }}
+            {% endif %}
+            {% endfor %}
+        </form>
+        <p>Основные характеристики монеты</p>
+        <form>
+            {% for field in coin_form %}
+            {% if not field.value|length_is:"0" and field.value != None %}
+            <p class="label">{{ field.label }}</p>
+            <p>{{ field.value }}</p>
+            {% endif %}
+            {% endfor %}
+        </form>
+    </div>
+</div>
 {% endblock %}
+
 {% block javascript %}
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $('.sm_slider').smSlider({pagination : false});
 
             $('#detail > p').click(function () {
                 $(this).next().toggleClass('js-hidden');
             });
-        })
-    </script>
+        });
+</script>
 {% endblock %}

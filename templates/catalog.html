@@ -14,3 +14,13 @@
         {% include 'view_catalog.html' %}
     </div>
 {% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('.image_coin').click( function() {
+               $(this).toggleClass('flip');
+            });
+         });
+</script>
+{% endblock %}

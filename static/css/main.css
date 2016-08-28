@@ -1,4 +1,5 @@
-html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, fieldset, input, textarea, p, blockquote {
+@charset "UTF-8";
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, fieldset, input, textarea, p, blockquote, figure {
   margin: 0;
   padding: 0; }
 
@@ -41,7 +42,7 @@ ul {
   left: 0;
   margin: 0 auto; }
 
-.image_coin img {
+figure img {
   max-width: 100%;
   height: auto;
   display: block;
@@ -101,6 +102,73 @@ ul {
 
 .clearfix {
   display: block; }
+
+/*
+.container {
+	margin: 100px auto auto 100px;
+	position: relative;
+	width: 190px;
+	height: 266px;
+
+	-webkit-perspective: 600px;
+	-moz-perspective: 600px;
+	-ms-perspective: 600px;
+	-o-perspective: 600px;
+	perspective: 600px;
+}
+*/
+.image_coin {
+  /* ╨┐╨╛╨▓╨╛╤А╨░╤З╨╕╨▓╨░╤В╤М ╨▒╤Г╨┤╨╡╨╝ ╨╛╨▒╤Й╨╕╨╣ ╨║╨╛╨╜╤В╨╡╨╣╨╜╨╡╤А */
+  width: 150px;
+  height: 150px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.7s;
+  -moz-transition: -moz-transform 0.7s;
+  -ms-transition: -moz-transform 0.7s;
+  -o-transition: -o-transform 0.7s;
+  transition: transform 0.7s;
+  /* ╤В╤А╨░╨╜╤Б╤Д╨╛╤А╨╝╨░╤Ж╨╕╨╕ ╨▒╤Г╨┤╤Г╤В ╨┐╤А╨╛╨╕╤Б╤Е╨╛╨┤╨╕╤В╤М ╨░╨╜╨╕╨╝╨╕╤А╨╛╨▓╨░╨╜╨╜╨╛ ╨┐╤А╨╛╨┤╨╛╨╗╨╢╨╕╤В╨╡╨╗╤М╨╜╨╛╤Б╤В╤М╤О 0.5 ╤Б╨╡╨║ */
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  /* ╤Г╨║╨░╨╖╤Л╨▓╨░╨╡╨╝, ╤З╤В╨╛ ╨┤╨╛╤З╨╡╤А╨╜╨╕╨╡ ╤Н╨╗╨╡╨╝╨╡╨╜╤В╤Л ╨╜╨░╤Е╨╛╨┤╤П╤В╤Б╤П ╨▓ 3D ╨┐╤А╨╛╤Б╤В╤А╨░╨╜╤Б╤В╨▓╨╡ */ }
+
+.image_coin.flip {
+  /* ╨┤╨╛╨▒╨░╨▓╨╗╤П╤П ╤Н╤В╨╛╤В ╨║╨╗╨░╤Б╤Б, ╨┐╨╛╨▓╨╛╤А╨░╤З╨╕╨▓╨░╨╡╨╝ ╨║╨╛╨╜╤В╨╡╨╣╨╜╨╡╤А ╨╜╨░ 180 ╨│╤А╨░╨┤╤Г╤Б╨╛╨▓ */
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg); }
+
+figure {
+  position: absolute;
+  display: block;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* ╨╡╤Б╨╗╨╕ ╤Н╨╗╨╡╨╝╨╡╨╜╤В "╨╛╤В╨▓╨╡╤А╨╜╤Г╨╗╤Б╤П" ╨╛╤В ╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╤В╨╡╨╗╤П, ╨║╨╛╨╜╤В╨╡╨╜╤В ╤Н╤В╨╛╨│╨╛ ╤Н╨╗╨╡╨╝╨╡╨╜╤В╨░ ╨╜╨╡ ╨▓╨╕╨┤╨╡╨╜ */ }
+
+.avers {
+  background: url(card-back.png); }
+
+.reverse {
+  background: url(card-front.png);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  /* ╨▓ ╨╜╨░╤З╨░╨╗╤М╨╜╨╛╨╝ ╨┐╨╛╨╗╨╛╨╢╨╡╨╜╨╕╨╕ ╤Д╤Н╨╣╤Б ╨║╨░╤А╤В╤Л ╨║ ╨╜╨░╨╝ ╤А╨░╨╖╨▓╨╡╤А╨╜╤Г╤В ╨╜╨░ 180 ╨│╤А╨░╨┤╤Г╤Б╨╛╨▓ */ }
 
 #header_menu {
   margin: 0 50px; }

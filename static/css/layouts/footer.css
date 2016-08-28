@@ -1,39 +1,43 @@
 footer {
-  height: 120px;
+  position: relative;
   background-color: #3674b2;
-  width: 100%;
   color: #fff;
-  font-size: 12px; }
+  font-size: 12px;
+  height: 50px;
+  margin-top: -50px;
+  clear: both; }
 
+/*
 #footer_nav {
   margin: 0 0 0 100px;
   padding: 5px;
-  list-style: none;
   position: relative;
-  font-size: 14px; }
-
+  font-size: 14px;
+}
 #footer_nav li {
   float: left;
   position: relative;
-  margin-right: 75px; }
-
+  margin-right: 75px;
+}
 #footer_nav li a {
   color: #fff;
   text-decoration: none;
-  display: block; }
-
+  display: block;
+}
 #footer_nav li a:hover {
-  text-decoration: underline; }
-
+  text-decoration: underline;
+}
 #footer_nav ul {
   margin-left: 5px;
-  list-style: none;
   float: none;
   position: absolute;
-  font-size: 12px; }
-
-#footer_nav ul li {
+  font-size: 12px;
+}
+#footer_nav ul li
+{
   float: none;
-  clear: none; }
+  clear: none;
+}
+*/
 
 /*# sourceMappingURL=footer.css.map */

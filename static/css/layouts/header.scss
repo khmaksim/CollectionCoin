@@ -1,9 +1,9 @@
-@import '../global-vars/locals';
+@import '../global_vars/locals';
 
 header {
   display: block;
   height: 70px;
   background-color: $main-color;
   width: 100%;
-  margin-bottom: 10px;
+  padding-bottom: -10px;
 }

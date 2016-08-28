@@ -6,6 +6,7 @@
     <a href="{% url 'catalog' %}">Каталог</a> |
     {{ section.name }}
 {% endblock %}
+
 {% block content %}
     {% for coin in coins %}
         <div class="coin">

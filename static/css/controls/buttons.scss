@@ -1,4 +1,4 @@
-@import '../global-vars/locals';
+@import '../global_vars/locals';
 
 .save_button{
     margin-top: 15px;
@@ -22,11 +22,11 @@
     text-align: center;
     background: #f7ae32;
     color: #fff;
-    padding: 4px 0px;
+    padding: 5px 0px;
     outline: none;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
 }
 .add_to_collection:hover{
     background: #FFB434;

@@ -1,12 +1,15 @@
-@import '../global-vars/locals';
+@import '../global_vars/locals';
 
 footer {
-  height: 50px;
-  margin-top: -50px;
+  position: relative;
   background-color: $main-color;
   color: #fff;
   font-size: 12px;
+  height: 50px;
+  margin-top: -50px;
+  clear: both;
 }
+/*
 #footer_nav {
   margin: 0 0 0 100px;
   padding: 5px;
@@ -37,3 +40,4 @@ footer {
   float: none;
   clear: none;
 }
+*/

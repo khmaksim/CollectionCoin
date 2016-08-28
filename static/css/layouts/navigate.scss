@@ -1,4 +1,4 @@
-@import '../global-vars/locals';
+@import '../global_vars/locals';
 
 #header_menu {
     margin: 0 50px;
@@ -6,20 +6,19 @@
 #header_menu li {
     float: right;
     display: block;
-    margin: 15px 25px;
-    padding: 10px 0;
+    padding: 25px 25px;
 }
 #header_menu a {
     text-decoration: none;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 14px;
 }
 #header_menu a:hover {
     text-decoration: underline;
 }
 #breadcrumbs {
-  margin: 10px 0px 10px 5px;
   color: $text-dark-color;
+  padding: 10px 0px 10px 0px;
 }
 #breadcrumbs li {
   display: inline;
@@ -30,4 +29,19 @@
 }
 #breadcrumbs a:hover{
     text-decoration: underline;
+}
+.nav_catalog {
+  float: left;
+  width: 160px;
+}
+.nav_ca {
+  list-style: none;
+}
+.left_nav a {
+  position: relative;
+  color: $text-color;
+  text-decoration: none;
+}
+.left_nav a:hover {
+  text-decoration: underline;
 }

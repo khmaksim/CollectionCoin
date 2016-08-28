@@ -1,6 +1,7 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 from collection.models import Section, Coin, Metal, TypeEdge, Collection
 from collection.form import CoinForm, AddToCollectionForm, CollectionForm
 
@@ -16,14 +17,13 @@ def main(request):
                                                 'section_list': section_list})
 
 
+@login_required
 def catalog(request):
-    if not request.user.is_authenticated():
-        return render(request, 'catalog.html')
-    else:
-        title = breadcrumbs = u'Каталог'
-        section_list = Section.objects.all()
-        return render(request, 'catalog.html',
-                      {'title': title, 'breadcrumbs': breadcrumbs, 'section_list': section_list})
+    title = breadcrumbs = u'Каталог'
+    sections = Section.objects.all()
+    coins = Coin.objects.all()[:48:3]
+    return render(request, 'catalog.html',
+                  {'title': title, 'breadcrumbs': breadcrumbs, 'sections': sections, 'coins': coins})
 
 
 def section_catalog(request, id_section):

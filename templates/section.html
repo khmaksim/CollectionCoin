@@ -10,13 +10,27 @@
 {% block content %}
 {% for coin in coins %}
 <div class="coin">
-    <div class="header_coin"><a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a></div>
-    {% for image in coin.image_set.all|slice:":1" %}
-    <div class="image_coin">
-        <img src="{{ image.image.url }}"/>
+    <div class="header_coin">
+        <a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a>
     </div>
-    {% endfor %}
+    <div class="image_coin">
+        {% for image in coin.image_set.all %}
+        <figure class="{% if forloop.counter == 1 %}avers{% else %}reverse{% endif %}">
+            <img src="{{ image.image.url }}"/>
+        </figure>
+        {% endfor %}
+    </div>
     <a href="{% url 'add_to_collection' section.id coin.id %}" class="add_to_collection">Добавить в коллекцию</a>
 </div>
 {% endfor %}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('.image_coin').click( function() {
+               $(this).toggleClass('flip');
+            });
+         });
+</script>
 {% endblock %}

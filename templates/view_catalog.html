@@ -3,7 +3,6 @@
     <div class="header_coin">
         <a href="{% url 'information_coin' coin.section.id coin.id %}">{{ coin.name }}</a>
     </div>
-
     <div class="image_coin">
         {% for image in coin.image_set.all %}
         <figure class="{% if forloop.counter == 1 %}avers{% else %}reverse{% endif %}">

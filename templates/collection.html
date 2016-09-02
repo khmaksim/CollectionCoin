@@ -1,13 +1,28 @@
-{% extends "section_list.html" %}
+{% extends "base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
 
 {% block breadcrumbs %}
 <li>Моя коллекция</li>
 {% endblock %}
 
-{% block section %}
-{%  for section in section_list %}
-<li>
-    <a href="{% url 'section_collection' section.id %}">{{ section.name }}</a>
-</li>
-{% endfor %}
+{% block content %}
+<div class="nav_catalog">
+    {% if user.is_authenticated %}
+    {% if sections %}
+    <ul>
+        {% for section in sections %}
+        <li>
+            <a href="{% url 'section_collection' section.id %}">{{ section.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endif %}
+</div>
+<div class="view_catalog">
+    {% include 'view_catalog.html' %}
+</div>
 {% endblock %}

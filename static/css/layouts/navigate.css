@@ -37,12 +37,12 @@
 .nav_ca {
   list-style: none; }
 
-.left_nav a {
+.nav_catalog a {
   position: relative;
   color: #42423c;
   text-decoration: none; }
 
-.left_nav a:hover {
+.nav_catalog a:hover {
   text-decoration: underline; }
 
 /*# sourceMappingURL=navigate.css.map */

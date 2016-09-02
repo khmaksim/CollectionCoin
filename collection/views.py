@@ -73,13 +73,12 @@ def add_to_collection(request, id_coin):
 
 
 def my_collection(request):
-    title = breadcrumbs = u'Моя Коллекция'
-
-    section_list = Section.objects.filter(coin__collection__user=request.user).distinct()
+    title = u'Моя Коллекция'
+    sections = Section.objects.filter(coin__collection__user=request.user).distinct()
 
     return render(request, 'collection.html', {'title': title,
-                                               'breadcrumbs': [{'url': '', 'title': breadcrumbs}],
-                                               'section_list': section_list})
+                                               'breadcrumbs': [{'url': '', 'title': title}],
+                                               'sections': sections})
 
 
 def section_collection(request, id_section):

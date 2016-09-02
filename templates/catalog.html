@@ -3,16 +3,26 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block breadcrumbs %}
-    <li>Каталог</li>
+<li>Каталог</li>
 {% endblock %}
 
 {% block content %}
-    <div class="nav_catalog">
-        {% include 'nav_catalog.html' %}
-    </div>
-    <div class="view_catalog">
-        {% include 'view_catalog.html' %}
-    </div>
+<div class="nav_catalog">
+    {% if user.is_authenticated %}
+    {% if sections %}
+    <ul>
+        {% for section in sections %}
+        <li>
+            <a href="{% url 'section_catalog' section.id %}">{{ section.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endif %}
+</div>
+<div class="view_catalog">
+    {% include 'view_catalog.html' %}
+</div>
 {% endblock %}
 
 {% block javascript %}
@@ -22,5 +32,6 @@
                $(this).toggleClass('flip');
             });
          });
+
 </script>
 {% endblock %}

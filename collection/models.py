@@ -63,6 +63,9 @@ class Section(models.Model):
     parent_section = models.ForeignKey('Section', verbose_name=u'Корневой раздел', null=True, blank=True,
                                        db_column='id_parent_section')
 
+    class Meta:
+        ordering = ["name"]
+
     def __str__(self):
         return u'%s' % (self.name,)
 

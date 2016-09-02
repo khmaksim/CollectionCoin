@@ -14,11 +14,18 @@
         <a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a>
     </div>
     <div class="image_coin">
+        {% if coin.image_set.all %}
         {% for image in coin.image_set.all %}
         <figure class="{% if forloop.counter == 1 %}avers{% else %}reverse{% endif %}">
             <img src="{{ image.image.url }}"/>
         </figure>
         {% endfor %}
+        {% else %}
+        <figure>
+            {% load staticfiles %}
+            <img src="{% static 'images/no_coins.png' %}"/>
+        </figure>
+        {% endif %}
     </div>
     <a href="{% url 'add_to_collection' section.id coin.id %}" class="add_to_collection">Добавить в коллекцию</a>
 </div>
@@ -29,7 +36,8 @@
 <script type="text/javascript">
         $(document).ready(function(){
             $('.image_coin').click( function() {
-               $(this).toggleClass('flip');
+                   if ($(this).children("figure").size() == 2)
+                        $(this).toggleClass('flip');
             });
          });
 </script>

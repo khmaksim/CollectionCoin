@@ -1,0 +1,26 @@
+{% extends "profile.html" %}
+
+{% block title %}Профиль - Сменить email{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{% url 'user_account:profile' %}">Профиль</a></li> |
+<li>Сменить email</li>
+{% endblock %}
+
+{% block profile_item %}
+<div id="profile">
+    <section>
+        <form action="." method="post">{% csrf_token %}
+            <h2>Сменить email</h2>
+            <p>{% if form.saved %}Сохранено{% endif %}</p>
+            <p>
+                <label for="{{ form.email.name }}">{{ form.email.label }}</label>
+                {{ form.email }}
+            </p>
+            <p class="login button">
+                <input type="submit" value="Сохранить"/>
+            </p>
+        </form>
+    </section>
+</div>
+{% endblock %}

@@ -372,7 +372,7 @@ label {
   margin: 0 auto;
   width: 500px; }
 
-#profile h3 {
+#profile h2 {
   text-align: center;
   padding-bottom: 10px; }
 
@@ -386,5 +386,20 @@ label {
   width: 98%;
   margin-top: 4px;
   padding: 10px 5px 10px 5px; }
+
+.nav_profile {
+  float: left;
+  width: 160px; }
+
+.nav_profile {
+  list-style: none; }
+
+.nav_profile a {
+  position: relative;
+  color: #42423c;
+  text-decoration: none; }
+
+.nav_profile a:hover {
+  text-decoration: underline; }
 
 /*# sourceMappingURL=main.css.map */

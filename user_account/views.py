@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from user_account.form import AuthenticationForm, RegistrationForm, ProfileChangingEmailForm, ProfileChangingPasswordForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.views.generic.edit import FormView
 
 
 def authentication(request):
@@ -77,6 +78,51 @@ def profile(request):
 
     return render(request, 'profile.html', {'changing_password_form': changing_password_form,
                                             'changing_email_form': changing_email_form})
+
+
+class ChangingEmailForm(FormView):
+    form_class = ProfileChangingEmailForm
+    template_name = 'profile_email.html'
+
+    def get_initial(self):
+        initial = super(ChangingEmailForm, self).get_initial()
+        initial['email'] = self.request.user.email
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super(ChangingEmailForm, self).get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        user = self.request.user
+        user.email = form.cleaned_data['email']
+        user.save()
+        return super(ChangingEmailForm, self).form_valid(form)
+
+
+class ChangingPasswordForm(FormView):
+    form_class = ProfileChangingPasswordForm
+    template_name = 'profile_password.html'
+
+    def get_initial(self):
+        initial = super(ChangingPasswordForm, self).get_initial()
+        initial['password_new'] = self.request.user.email
+        print(initial)
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super(ChangingPasswordForm, self).get_context_data(**kwargs)
+        context['changing_password_form'] = self.form_class
+        return context
+
+    def form_valid(self, form):
+        user = self.request.user
+        password_new = form.cleaned_data['password_new']
+        password_old = form.cleaned_data['password_old']
+        if password_new != password_old and user.check_password(password_old):
+            user.set_password(password_new)
+            user.save()
+        return super(ChangingPasswordForm, self).form_valid(form)
 
 
 def checking_email_user(email):

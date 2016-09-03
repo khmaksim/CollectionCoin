@@ -1,17 +1,46 @@
-{% extends "base.html" %}
+{% extends "collection.html" %}
 
 {% block title %}{{ section.name }}{% endblock %}
 
 {% block breadcrumbs %}
+{% if collections %}
+<li><a href="{% url 'collection' %}">Моя коллекция</a> |</li>
+{% else %}
 <li><a href="{% url 'catalog' %}">Каталог</a></li> |
+{% endif %}
 <li>{{ section.name }}</li>
 {% endblock %}
 
 {% block content %}
+{% if collections %}
+{% for collection in collections %}
+<div class="coin">
+    <div class="header_coin">
+        <a href="{% url 'coin_collection' section.id collection.coin.id collection.id%}">{{ collection.coin.name }}</a>
+    </div>
+    <div class="image_coin">
+        {% if collection.coin.image_set.all %}
+        {% for image in collection.coin.image_set.all %}
+        <figure class="{% if forloop.counter == 1 %}avers{% else %}reverse{% endif %}">
+            <img src="{{ image.image.url }}"/>
+        </figure>
+        {% endfor %}
+        {% else %}
+        <figure>
+            {% load staticfiles %}
+            <img src="{% static 'images/no_coins.png' %}"/>
+        </figure>
+        {% endif %}
+    </div>
+    <a href="{% url 'remove_from_collection' section.id collection.coin.id %}" class="remove_from_collection">Убрать из
+        коллекции</a>
+</div>
+{% endfor %}
+{% else %}
 {% for coin in coins %}
 <div class="coin">
     <div class="header_coin">
-        <a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a>
+         <a href="{% url 'information_coin' section.id coin.id %}">{{ coin.name }}</a>
     </div>
     <div class="image_coin">
         {% if coin.image_set.all %}
@@ -30,6 +59,7 @@
     <a href="{% url 'add_to_collection' section.id coin.id %}" class="add_to_collection">Добавить в коллекцию</a>
 </div>
 {% endfor %}
+{% endif %}
 {% endblock %}
 
 {% block javascript %}

@@ -29,7 +29,7 @@ def catalog(request):
 def section_catalog(request, id_section):
     coins = Coin.objects.filter(section=id_section).order_by('name')
     section = Section.objects.get(pk=id_section)
-    return render_to_response('section.html', {'section': section,
+    return render_to_response('section_coin.html', {'section': section,
                                                'coins': coins}, context_instance=RequestContext(request))
 
 
@@ -63,8 +63,9 @@ def add_to_collection(request, id_coin):
         if add_to_collection_form.is_bound and add_to_collection_form.is_valid():
             collection = add_to_collection_form.save(commit=False)
             collection.coin = coin
+            collection.user = request.user
             collection.save()
-            return redirect('coins_section', id_section=coin.section_id)
+            return redirect('section_collection', id_section=coin.section_id)
     else:
         add_to_collection_form = AddToCollectionForm(label_suffix='')
 
@@ -97,7 +98,7 @@ def section_collection(request, id_section):
 
     title = Section.objects.get(pk=id_section).name
 
-    return render(request, 'section_collection.html', {'title': title,
+    return render(request, 'section_coin.html', {'title': title,
                                                        'section': section,
                                                        'collections': collections})
 

@@ -4,7 +4,7 @@
 {% block css %}
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'user_account/css/auth.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'user_account/css/not-auth/animate-custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'user_account/css/animate-custom.css' %}" />
 {% endblock %}
 {% block content %}
     <section>
@@ -15,6 +15,11 @@
                 <form  action="." autocomplete="on" method="post">
                     {% csrf_token %}
                     <h1>Войти</h1>
+                    {% if auth_form.non_field_errors %}
+                    <div class="errors">
+                        {{ auth_form.non_field_errors }}
+                    </div>
+                    {% endif %}
                     <p>
                         <label for="{{ auth_form.your_login.name }}" data-icon="u">{{ auth_form.your_login.label }}</label>
                         {{ auth_form.your_login }}
@@ -22,6 +27,7 @@
                     <p>
                         <label for="{{ auth_form.your_password.name }}" data-icon="p">{{ auth_form.your_password.label }}</label>
                         {{ auth_form.your_password }}
+                        {{ auth_form.your_password.errors }}
                     </p>
                     <p class="keeplogin">
                         {{ auth_form.keep_me_login }}
@@ -49,7 +55,8 @@
                         {{ reg_form.password_signup }}
                     </p>
                     <p id="user_agreement">
-                        Нажимая кнопку &laquoЗарегистрироваться&raquo, Вы принимаете условия <a href="{% url 'user_account:user_agreement' %}">Пользовательского соглашения</a>.
+                        Нажимая кнопку &laquoЗарегистрироваться&raquo, Вы принимаете условия <a href="{% url 'user_account:user_agreement' %}" target="_blank">
+                        Пользовательского соглашения</a>.
                     </p>
                     <p class="signin button">
                         <input type="submit" value="Зарегистрироваться"/>

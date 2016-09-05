@@ -1,13 +1,23 @@
 from django import forms
+from django.contrib.auth.models import User
 
 
 class AuthenticationForm(forms.Form):
-    your_login = forms.CharField(label=u'Ваш email или логин', widget=forms.TextInput(
-        attrs={'placeholder': 'myusername or mymail@mail.com', 'required': 'required'}), max_length=50, required=True)
+    your_login = forms.CharField(label=u'Ваш email', widget=forms.TextInput(
+        attrs={'placeholder': 'mymail@mail.com', 'required': 'required'}), max_length=50, required=True)
     your_password = forms.CharField(label=u'Ваш пароль', widget=forms.PasswordInput(
         attrs={'placeholder': 'abc123DEF .!', 'required': 'required'}), max_length=50, required=True)
-    keep_me_login = forms.BooleanField(label=u'Оставаться в системе', widget=forms.CheckboxInput(
-        attrs={'value': 'loginkeeping'}), required=False)
+    # keep_me_login = forms.BooleanField(label=u'Оставаться в системе', widget=forms.CheckboxInput(
+    #     attrs={'value': 'loginkeeping'}), required=False)
+
+    # user validation by email
+    def clean(self):
+        cleaned_data = super(AuthenticationForm, self).clean()
+        try:
+            User.objects.get(email=cleaned_data.get('your_login'))
+        except User.DoesNotExist:
+            raise forms.ValidationError(u"Пользователя с такой электронной почтой или паролем не найден")
+        return cleaned_data
 
 
 class RegistrationForm(forms.Form):

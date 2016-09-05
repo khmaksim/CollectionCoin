@@ -1,5 +1,5 @@
-@import "../../../../../static/css/global-vars/locals";
-@import "../../../../../static/css/controls/buttons";
+@import '../../../../../static/css/scss/vars';
+@import '../../../../../static/css/scss/buttons';
 
 /** fonts used for the icons **/
 @font-face {
@@ -267,4 +267,11 @@ p#user_agreement {
     width: 960px;
     margin: 0 auto;
     position: relative;
+}
+.errors {
+    background: #DF5959;
+    margin: 5px -30px;
+    padding: 15px;
+    color: white;
+    text-align: center;
 }

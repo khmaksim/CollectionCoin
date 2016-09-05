@@ -1,12 +1,12 @@
-__author__ = 'kolobok'
-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
-from user_account.form import AuthenticationForm, RegistrationForm, ProfileChangingEmailForm, ProfileChangingPasswordForm
+from user_account.form import AuthenticationForm, RegistrationForm, ProfileChangingEmailForm, \
+    ProfileChangingPasswordForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.views.generic.edit import FormView
+from django import forms
 
 
 def authentication(request):
@@ -14,12 +14,15 @@ def authentication(request):
         auth_form = AuthenticationForm(request.POST, auto_id='%s')
 
         if auth_form.is_valid():
-            user = authenticate(username=auth_form.cleaned_data['your_login'],
-                                password=auth_form.cleaned_data['your_password'])
-            if user is not None and user.is_active:
-                login(request, user)
-                print(request.user.is_authenticated())
+            user_auth = authenticate(username=User.objects.get(email=auth_form.cleaned_data['your_login']),
+                                     password=auth_form.cleaned_data['your_password'])
+
+            if user_auth is not None and user_auth.is_active:
+                login(request, user_auth)
                 return HttpResponseRedirect('/')
+            else:
+                auth_form.add_error(None, forms.ValidationError(
+                    u"Пользователя с такой электронной почтой или паролем не найден"))
     else:
         auth_form = AuthenticationForm(auto_id='%s')
 

@@ -13,7 +13,7 @@ class ImageInline(admin.TabularInline):
 
 
 class CoinAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year')
+    list_display = ('name', 'year', 'section')
     fields = (('section', 'name', 'year'), 'circulation', 'inscription', ('weight', 'diameter', 'thickness'), 'metal',
               ('type_edge', 'mint'))
     inlines = (ImageInline, )

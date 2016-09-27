@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Coin(models.Model):
     name = models.CharField(u'Наименование', max_length=50)
     circulation = models.IntegerField(u'Тираж', null=True, blank=True)
-    inscription = models.CharField(u'Надпись на монете', max_length=200, blank=True)
+    inscription = models.CharField(u'Надпись на монете', max_length=200, null=True, blank=True)
     year = models.SmallIntegerField(u'Год монеты')
     weight = models.DecimalField(u'Масса монеты', max_digits=5, decimal_places=3, null=True, blank=True)
     diameter = models.DecimalField(u'Диаметр монеты', max_digits=4, decimal_places=2, null=True, blank=True)
@@ -39,6 +39,9 @@ class Image(models.Model):
             if field.name == 'image':
                 field.upload_to = 'images/origin/coins/%d' % self.coin.year
         super(Image, self).save()
+
+    class Meta:
+        ordering = ['image']
 
 
 class Metal(models.Model):
@@ -80,7 +83,7 @@ class Grade(models.Model):
 
 class InternationalGrade(Grade):
     class Meta:
-        db_table = 'international_grade'
+        db_table = 'collection_international_grade'
 
     def __str__(self):
         return u'%s' % self.name

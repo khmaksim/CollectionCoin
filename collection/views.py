@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from collection.models import Section, Coin, Metal, TypeEdge, Collection
 from collection.form import CoinForm, AddToCollectionForm, CollectionForm
+import re
 
 
 def main(request):
@@ -27,10 +28,40 @@ def catalog(request):
 
 
 def section_catalog(request, id_section):
-    coins = Coin.objects.filter(section=id_section).order_by('name')
+    coins = Coin.objects.filter(section=id_section)
     section = Section.objects.get(pk=id_section)
-    return render_to_response('section_coin.html', {'section': section,
-                                               'coins': coins}, context_instance=RequestContext(request))
+
+    return render_to_response('section_coin.html',
+                              {'section': section, 'coins': sort_coin_name(coins)},
+                              context_instance=RequestContext(request))
+
+
+def sort_coin_name(list_coin):
+    pattern = re.compile('([0-9]{1,3}|[А-Яа-я]+)?\s?([А-Яа-я\s]+)')
+    dict_coins = {}
+    list_sort_coins = []
+
+    for coin in list_coin:
+        matches = pattern.match(coin.name)
+        val = matches.group(1)
+
+        if val is not None:
+            if u'Один' in val:
+                wt = 10
+            else:
+                wt = int(matches.group(1)) * 0.01
+        else:
+            val = matches.group(2)
+            if u'Руб' in val:
+                wt = 1
+        dict_coins[wt] = coin
+
+    keys_dict_coins = list(dict_coins.keys())
+    keys_dict_coins.sort()
+    for key in keys_dict_coins:
+        list_sort_coins.append(dict_coins[key])
+
+    return list_sort_coins
 
 
 def information_coin(request, id_coin):
@@ -51,6 +82,7 @@ def information_coin(request, id_coin):
 
     coin_form = CoinForm(instance=coin, initial={'type_edge': type_edge_name, 'metal': ','.join(metal_list)},
                          label_suffix='')
+
     return render_to_response('coin.html', {'coin': coin, 'coin_form': coin_form},
                               context_instance=RequestContext(request))
 

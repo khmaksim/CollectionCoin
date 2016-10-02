@@ -48,6 +48,8 @@ def sort_coin_name(list_coin):
         if val is not None:
             if u'Один' in val:
                 wt = 10
+            elif u'Пол' in val:
+                wt = 0.005
             else:
                 wt = int(matches.group(1)) * 0.01
         else:

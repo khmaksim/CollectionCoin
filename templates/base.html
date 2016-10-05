@@ -32,50 +32,15 @@
         <div id="push" class="clearfix"></div>
     </div>
     <footer>
-{#        <ul id="footer_nav">#}
-{#            <li>#}
-{#                <a href="#">Раздел</a>#}
-{#                <ul>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                </ul>#}
-{#            </li>#}
-{#            <li><a href="#">Раздел</a>#}
-{#                 <ul>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                </ul>#}
-{#            </li>#}
-{#            <li><a href="#">Раздел</a>#}
-{#                 <ul>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                     <li><a href="#">Подраздел</a></li>#}
-{#                </ul>#}
-{#            </li>#}
-{#            <li><a href="#">Раздел</a>#}
-{#                 <ul>#}
-{#                    <li><a href="#">Подраздел</a></li>#}
-{#                    <li><a href="#">Подраздел</a></li>#}
-{#                    <li><a href="#">Подраздел</a></li>#}
-{#                </ul>#}
-{#            </li>#}
-{#            <li><a href="#">Раздел</a>#}
-{#                <ul>#}
-{#                    <li><a href="#">Подраздел</a></li>#}
-{#                    <li><a href="#">Подраздел</a></li>#}
-{#                    <li><a href="#">Подраздел</a></li>#}
-{#                    <li><a href="#">Подраздел</a></li>#}
-{#                </ul>#}
-{#            </li>#}
-{#        </ul>#}
-{#        &copy;&nbsp;2016#}
+        <div id="social_buttons">
+            <img src="{% static 'images/iconmonstr-vk-1-32.png' %}">
+            <img src="{% static 'images/iconmonstr-facebook-1-32.png' %}">
+            <img src="{% static 'images/iconmonstr-twitter-1-32.png' %}">
+        </div>
+        <ul id="footer_nav">
+            <li><a href="{% url 'user_account:user_agreement' %}" target="_blank">Пользовательское соглашение</a></li>
+            <li>&copy;&nbsp;2016 CoinCollections</li>
+        </ul>
     </footer>
     {% block javascript %}{% endblock %}
 </body>

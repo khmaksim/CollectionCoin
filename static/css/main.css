@@ -217,6 +217,25 @@ figure {
 .nav_catalog a:hover {
   text-decoration: underline; }
 
+#footer_nav {
+  float: right;
+  padding: 15px;
+  position: relative;
+  font-size: 12px; }
+
+#footer_nav li {
+  float: left;
+  position: relative;
+  margin-right: 30px; }
+
+#footer_nav li a {
+  color: #fff;
+  text-decoration: none;
+  display: block; }
+
+#footer_nav li a:hover {
+  text-decoration: underline; }
+
 header {
   display: block;
   height: 70px;
@@ -233,38 +252,10 @@ footer {
   margin-top: -50px;
   clear: both; }
 
-/*
-#footer_nav {
-  margin: 0 0 0 100px;
-  padding: 5px;
-  position: relative;
-  font-size: 14px;
-}
-#footer_nav li {
+#social_buttons {
   float: left;
-  position: relative;
-  margin-right: 75px;
-}
-#footer_nav li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-}
-#footer_nav li a:hover {
-  text-decoration: underline;
-}
-#footer_nav ul {
-  margin-left: 5px;
-  float: none;
-  position: absolute;
-  font-size: 12px;
-}
-#footer_nav ul li
-{
-  float: none;
-  clear: none;
-}
-*/
+  margin: 10px 0 0 100px; }
+
 .save_button {
   margin-top: 15px;
   background: #67b3ff;

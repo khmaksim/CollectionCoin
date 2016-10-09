@@ -16,14 +16,22 @@ class Coin(models.Model):
     mint = models.ForeignKey('Mint', verbose_name=u'Монетный двор', null=True, blank=True, db_column='id_mint')
 
     def __str__(self):
-        return u'%s %s %s %s' % (self.name, self.year, self.inscription, self.circulation,)
+        return u'%s %s' % (self.name, self.year)
+
+    class Meta:
+        verbose_name = u'Монета'
+        verbose_name_plural = u'Монеты'
 
 
 class Mint(models.Model):
     name = models.CharField(u'Наименование', max_length=100)
 
     def __str__(self):
-        return u'%s' % (self.name, )
+        return u'%s' % (self.name,)
+
+    class Meta:
+        verbose_name = u'Монетный двор'
+        verbose_name_plural = u'Монетные дворы'
 
 
 class Image(models.Model):
@@ -42,6 +50,8 @@ class Image(models.Model):
 
     class Meta:
         ordering = ['image']
+        verbose_name = u'Изображение'
+        verbose_name_plural = u'Изображения'
 
 
 class Metal(models.Model):
@@ -50,12 +60,18 @@ class Metal(models.Model):
     def __str__(self):
         return u'%s' % (self.name,)
 
+    class Meta:
+        verbose_name = u'Металл'
+        verbose_name_plural = u'Металлы'
+
 
 class TypeEdge(models.Model):
     name = models.CharField(u'Вид гурта', max_length=50)
 
     class Meta:
         db_table = 'collection_type_edge'
+        verbose_name = u'Гурт'
+        verbose_name_plural = u'Гурт'
 
     def __str__(self):
         return u'%s' % (self.name,)
@@ -64,10 +80,12 @@ class TypeEdge(models.Model):
 class Section(models.Model):
     name = models.CharField(u'Наименование раздела', max_length=200)
     parent_section = models.ForeignKey('Section', verbose_name=u'Корневой раздел', null=True, blank=True,
-                                       db_column='id_parent_section')
+                                       db_column='id_parent_section', on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ["name"]
+        verbose_name = u'Раздел'
+        verbose_name_plural = u'Разделы'
 
     def __str__(self):
         return u'%s' % (self.name,)
@@ -84,6 +102,8 @@ class Grade(models.Model):
 class InternationalGrade(Grade):
     class Meta:
         db_table = 'collection_international_grade'
+        verbose_name = u'Международная оценка'
+        verbose_name_plural = u'Международные оценки'
 
     def __str__(self):
         return u'%s' % self.name
@@ -92,6 +112,8 @@ class InternationalGrade(Grade):
 class SheldonGrade(Grade):
     class Meta:
         db_table = 'sheldon_grade'
+        verbose_name = u'Оценка по Шелдону'
+        verbose_name_plural = u'Оценки по Шелдону'
 
     def __str__(self):
         return u'%s' % self.name
@@ -105,3 +127,7 @@ class Collection(models.Model):
                                       db_column='id_sheldon_grade')
     user = models.ForeignKey(User, verbose_name=u'Пользователь', db_column='id_user')
     note = models.TextField(u'Заметки', null=True, blank=True)
+
+    class Meta:
+        verbose_name = u'Коллекция'
+        verbose_name_plural = u'Коллекция'

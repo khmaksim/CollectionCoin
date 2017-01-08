@@ -10,10 +10,19 @@
 <div class="nav_catalog">
     {% if user.is_authenticated %}
     {% if sections %}
-    <ul>
-        {% for section in sections %}
+    <ul class="root_section_catalog">
+        {% for root_section in sections %}
         <li>
-            <a href="{% url 'section_catalog' section.id %}">{{ section.name }}</a>
+            <a href="#">{{ root_section.name }}</a>
+            {% if root_section.section_set.all %}
+                <ul>
+                {% for sub_section in root_section.section_set.all %}
+                    <li>
+                        <a href="{% url 'section_catalog' sub_section.id %}">{{ sub_section.name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
@@ -29,9 +38,12 @@
 <script type="text/javascript">
         $(document).ready(function(){
             $('.image_coin').click( function() {
-               $(this).toggleClass('flip');
+                $(this).toggleClass('flip');
             });
-         });
-
+            $("ul.root_section_catalog li ul").hide();
+            $("ul.root_section_catalog li a").click(function() {
+                $(this).next().slideToggle();
+            });
+        });
 </script>
 {% endblock %}

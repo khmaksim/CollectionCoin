@@ -21,7 +21,7 @@ def main(request):
 @login_required
 def catalog(request):
     title = breadcrumbs = u'Каталог'
-    sections = Section.objects.all()
+    sections = Section.objects.filter(parent_section=None)
     coins = Coin.objects.all()[:48:3]
     return render(request, 'catalog.html',
                   {'title': title, 'breadcrumbs': breadcrumbs, 'sections': sections, 'coins': coins})

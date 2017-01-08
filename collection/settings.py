@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'collection.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'collection',
+        'NAME': 'mycollection',
         'USER': 'postgres',
         'PASSWORD': '12345',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 

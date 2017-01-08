@@ -30,7 +30,7 @@ ul {
   height: 250px;
   border: solid 1px #ABAA9D;
   float: left;
-  margin: 5px 5px 5px 5px;
+  margin: 0px 0px 5px 5px;
   border-radius: 5px; }
 
 .image_coin {
@@ -81,7 +81,7 @@ figure img {
 
 .view_catalog {
   float: left;
-  width: 800px; }
+  width: 750px; }
 
 #push {
   padding-bottom: 50px; }
@@ -189,8 +189,7 @@ figure {
 .breadcrumbs {
   color: #393933;
   padding: 10px 0px 10px 0px;
-  font-size: 14px;
-  font-weight: bold; }
+  font-size: 18px; }
 
 .breadcrumbs li {
   display: inline; }
@@ -204,37 +203,36 @@ figure {
 
 .nav_catalog {
   float: left;
-  width: 160px; }
-
-.nav_ca {
-  list-style: none; }
-
-.nav_catalog a {
-  position: relative;
-  color: #42423c;
-  text-decoration: none; }
-
-.nav_catalog a:hover {
-  text-decoration: underline; }
+  width: 200px; }
+  .nav_catalog ul {
+    list-style: none; }
+    .nav_catalog ul li {
+      font-size: 14px; }
+      .nav_catalog ul li ul li {
+        font-size: 14px;
+        margin-left: 20px; }
+    .nav_catalog ul a {
+      position: relative;
+      color: #42423c;
+      text-decoration: none; }
+    .nav_catalog ul a:hover {
+      text-decoration: underline; }
 
 #footer_nav {
   float: right;
   padding: 15px;
   position: relative;
   font-size: 12px; }
-
-#footer_nav li {
-  float: left;
-  position: relative;
-  margin-right: 30px; }
-
-#footer_nav li a {
-  color: #fff;
-  text-decoration: none;
-  display: block; }
-
-#footer_nav li a:hover {
-  text-decoration: underline; }
+  #footer_nav li {
+    float: left;
+    position: relative;
+    margin-right: 30px; }
+    #footer_nav li a:hover {
+      text-decoration: underline; }
+  #footer_nav a {
+    color: #fff;
+    text-decoration: none;
+    display: block; }
 
 header {
   display: block;

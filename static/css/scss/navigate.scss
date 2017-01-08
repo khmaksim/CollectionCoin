@@ -19,8 +19,7 @@
 .breadcrumbs {
   color: $text-dark-color;
   padding: 10px 0px 10px 0px;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 18px;
 }
 .breadcrumbs li {
   display: inline;
@@ -34,35 +33,52 @@
 }
 .nav_catalog {
   float: left;
-  width: 160px;
-}
-.nav_ca {
-  list-style: none;
-}
-.nav_catalog a {
-  position: relative;
-  color: $text-color;
-  text-decoration: none;
-}
-.nav_catalog a:hover {
-  text-decoration: underline;
+  width: 200px;
+
+  ul {
+    list-style: none;
+
+    li {
+        font-size: 14px;
+
+        ul {
+            li {
+                font-size: 14px;
+                margin-left: 20px;
+            }
+        }
+    }
+
+  a {
+    position: relative;
+    color: $text-color;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+ }
 }
 #footer_nav {
   float: right;
   padding: 15px;
   position: relative;
   font-size: 12px;
-}
-#footer_nav li {
-  float: left;
-  position: relative;
-  margin-right: 30px;
-}
-#footer_nav li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-}
-#footer_nav li a:hover {
-  text-decoration: underline;
+
+  li {
+    float: left;
+    position: relative;
+    margin-right: 30px;
+
+    a:hover {
+     text-decoration: underline;
+    }
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+  }
 }

@@ -43,19 +43,23 @@ def sort_coin_name(list_coin):
 
     for coin in list_coin:
         matches = pattern.match(coin.name)
-        val = matches.group(1)
+        val = matches.group(1).lower()
 
         if val is not None:
-            if u'Один' in val:
+            if u'рубл' in val:
+                wt = 100
+            elif u'один' in val:
                 wt = 10
-            elif u'Пол' in val:
+            elif u'пол' in val:
                 wt = 0.005
             else:
                 wt = int(matches.group(1)) * 0.01
-        else:
-            val = matches.group(2)
-            if u'Руб' in val:
-                wt = 1
+
+        val = matches.group(2)
+
+        if u'рубл' in val:
+            wt = 1
+
         dict_coins[wt] = coin
 
     keys_dict_coins = list(dict_coins.keys())

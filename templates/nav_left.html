@@ -1,0 +1,22 @@
+<div class="nav_catalog">
+    {% if user.is_authenticated %}
+    {% if sections %}
+    <ul class="root_section_catalog">
+        {% for root_section in sections %}
+        <li>
+            <a href="#">{{ root_section.name }}</a>
+            {% if root_section.section_set.all %}
+                <ul>
+                {% for sub_section in root_section.section_set.all %}
+                    <li>
+                        <a href="{% url 'section_catalog' sub_section.id %}">{{ sub_section.name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endif %}
+</div>

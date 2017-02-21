@@ -4,3 +4,4 @@ media/images/
 */migrations/
 *.css.map
 .sass-cache/
+*/.sass-cache/

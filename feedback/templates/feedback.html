@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Обратная связь{% endblock %}
+
+{% block breadcrumbs %}
+<li>Обратная связь</li>
+{% endblock %}
+
+{% block content %}
+<div id="feedback">
+    <section>
+        <form action="." method="post">{% csrf_token %}
+            <h2>Обратная связь</h2>
+            <p>
+                <label for="{{ form.email.name }}">{{ form.email.label }}</label>
+                {{ form.email }}
+            </p>
+            <p>
+                <label for="{{ form.name_sender.name }}">{{ form.name_sender.label }}</label>
+                {{ form.name_sender }}
+            </p>
+            <p>
+                <label for="{{ form.message.name }}">{{ form.message.label }}</label>
+                {{ form.message }}
+            </p>
+            <p class="login button">
+                <input type="submit" value="Отправить"/>
+            </p>
+        </form>
+    </section>
+</div>
+{% endblock %}

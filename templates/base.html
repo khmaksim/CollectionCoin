@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>{% block title %}Коллекция{% endblock %}</title>
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/css/main.css' %}" />
     {% block css %}{% endblock %}
     <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
     {% block js %}{% endblock %}
@@ -38,6 +38,7 @@
             <img src="{% static 'images/iconmonstr-twitter-1-32.png' %}">
         </div>
         <ul id="footer_nav">
+            <li><a href="{% url 'feedback:feedback' %}">Обратная связь</a></li>
             <li><a href="{% url 'user_account:user_agreement' %}" target="_blank">Пользовательское соглашение</a></li>
             <li>&copy;&nbsp;2016 CoinCollections</li>
         </ul>

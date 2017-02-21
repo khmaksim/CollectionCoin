@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'registration',
     'collection',
     'user_account',
+    'feedback',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,5 +1,3 @@
-__author__ = 'kolobok'
-
 from django.forms import ModelForm
 from django.forms.widgets import TextInput, SelectMultiple, Select
 from collection.models import Coin, Collection

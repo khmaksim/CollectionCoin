@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^$', main),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('user_account.urls', namespace='user_account', app_name='user_account')),
+    url(r'^', include('feedback.urls', namespace='feedback', app_name='feedback')),
     url(r'^collection/$', my_collection, name='collection'),
     url(r'^collection/(?P<id_section>[0-9]+)/$', section_collection, name='section_collection'),
     url(r'^collection/([0-9]+)/([0-9]+)/(?P<id_collection>[0-9]+)$', coin_collection, name='coin_collection'),

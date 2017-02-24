@@ -1,5 +1,6 @@
 *.pyc
 media/images/
+collection/fixtures/
 .idea/
 */migrations/
 *.css.map

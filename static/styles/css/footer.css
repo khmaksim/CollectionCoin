@@ -1,0 +1,14 @@
+footer {
+  position: relative;
+  background-color: #3674b2;
+  color: #fff;
+  font-size: 12px;
+  height: 50px;
+  margin-top: -50px;
+  clear: both; }
+
+#social_buttons {
+  float: left;
+  margin: 10px 0 0 100px; }
+
+/*# sourceMappingURL=footer.css.map */

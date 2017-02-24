@@ -35,7 +35,8 @@ form textarea {
   width: 600px; }
   #feedback textarea {
     width: 98%;
-    resize: none; }
+    resize: none;
+    height: 120px; }
 
 #detail input,
 #detail textarea {

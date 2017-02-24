@@ -302,7 +302,7 @@ footer {
 .remove_from_collection:hover {
   background: #FFB434; }
 
-#profile p.button input,
+p.button input,
 #wrapper p.button input {
   width: 100%;
   cursor: pointer;
@@ -315,12 +315,12 @@ footer {
   margin-bottom: 5px;
   border-radius: 3px; }
 
-#profile p.button input:hover,
+p.button input:hover,
 #wrapper p.button input:hover {
   background: #3697B2; }
 
-#profile p.button input:active,
-#profile p.button input:focus,
+p.button input:active,
+p.button input:focus,
 #wrapper p.button input:active,
 #wrapper p.button input:focus {
   background: #2C7B91;
@@ -366,7 +366,8 @@ form textarea {
   width: 600px; }
   #feedback textarea {
     width: 98%;
-    resize: none; }
+    resize: none;
+    height: 120px; }
 
 #detail input,
 #detail textarea {

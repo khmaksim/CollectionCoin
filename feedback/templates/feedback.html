@@ -9,6 +9,11 @@
 {% block content %}
 <div id="feedback">
     <section>
+        {% if sent %}
+            Сообщение отправлено
+        {% endif %}
+    </section>
+    <section>
         <form action="." method="post">{% csrf_token %}
             <h2>Обратная связь</h2>
             <p>

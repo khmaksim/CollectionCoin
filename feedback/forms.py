@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from feedback.models import Feedback
+from feedback.models import *
 
 
-class FeedbackForm(ModelForm):
+class MessageForm(ModelForm):
     class Meta:
-        model = Feedback
+        model = Message
         exclude = ['datetime', 'user']

@@ -1,6 +1,6 @@
 from django.conf.urls import url
-from feedback.views import feedback
+from .views import Messsage
 
 urlpatterns = [
-    url(r'^feedback/$', feedback, name='feedback'),
+    url(r'^feedback/$', Messsage.as_view(), name='feedback_message'),
 ]
